@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.open {
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.open.active {
+  transform: translateX(0);
+}
+
