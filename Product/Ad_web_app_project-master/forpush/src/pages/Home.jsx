@@ -36,7 +36,7 @@ function Home() {
 
       <div className="">
       <Routes>
-          <Route exact path="/home" element={
+          <Route exact path="/" element={
           <DisplayCharts />
           }/>
           <Route path ="/emission" element={<SecondPage />}/>

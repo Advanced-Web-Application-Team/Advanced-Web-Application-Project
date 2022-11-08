@@ -20,7 +20,7 @@ function Navbar({ closeModal, navbarOpen, user, setAuthState, setUser }) {
   };
 
   const toHomePage = () => {
-    navigate("/home");
+    navigate("");
     closeModal();
   };
 
