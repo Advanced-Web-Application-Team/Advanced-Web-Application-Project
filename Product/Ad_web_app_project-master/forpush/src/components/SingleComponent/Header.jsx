@@ -10,7 +10,7 @@ function Header({openModal}) {
     }
 
     const goToMainPage = () => {
-        navigate("/");  
+        navigate("/home");  
     };
 
   return (

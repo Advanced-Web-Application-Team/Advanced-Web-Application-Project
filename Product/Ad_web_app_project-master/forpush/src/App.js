@@ -1,61 +1,41 @@
-import Header from "./components/SingleComponent/Header";
-import Navbar from "./components/SingleComponent/Navbar";
-import { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import DisplayCharts from "./components/SingleComponent/DisplayCharts";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Footer from "./components/SingleComponent/Footer";
-import LogIn from "./components/SingleComponent/LogIn";
-import Register from "./components/SingleComponent/Register";
-import Carousel from "./components/SingleComponent/Carousel";
-import SecondPage from "./components/SingleComponent/SecondPage";
-import 'react-toastify/dist/ReactToastify.css';
-import { ChartProvider } from "./context/ChartContext";
-import LayoutsForChart from "./components/SingleComponent/LayoutsForChart";
-import UserView from "./components/SingleComponent/UserView";
+import * as React from 'react';
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import Home from './pages/Home';
+
+import { auth } from './firebaseconfig';
+import { onAuthStateChanged } from 'firebase/auth'
+
 function App() {
+  const [user, setUser] = React.useState(null);
+  const [authState, setAuthState] = React.useState(null)
 
-  let [navbarIsOpen, setNavbarIsOpen] = useState(false);
+  React.useEffect(() => {
+    const unSubscribeAuth = onAuthStateChanged(auth,
+      async authenticatedUser => {
+        if(authenticatedUser) {
+          setUser(authenticatedUser.email)
+          setAuthState('home');
+        } else {
+          setUser(null);
+          setAuthState('login')
+        }
+      })
 
-  const openModal = () => {
-    setNavbarIsOpen(true);
-  };
+      return unSubscribeAuth;
+  }, [user])
 
-  const closeModal = () => {
-    setNavbarIsOpen(false);
-  };
-
-  return (
-    <>
-    <ChartProvider>
-    <Router>
-    <div className="App">
-      <Header openModal={openModal} />
-      <Navbar closeModal={closeModal} navbarOpen={navbarIsOpen}/>
-
-      <div className="">
-      <Routes>
-          <Route exact path="/" element={
-          <DisplayCharts />
-          }/>
-          <Route path="/login" element={<LogIn />}/>
-          <Route path="/register" element={<Register />}/>
-          <Route path ="/emission" element={<SecondPage />}/>
-          <Route path="/layoutdesign" element={<LayoutsForChart />} />
-          <Route path="/publiclayout" element={<UserView />}/>
-      </Routes>
-      </div>
-
-    </div>
-   
-    </Router>
-
-   
-    <ToastContainer />
-    </ChartProvider>
-    </>
-  );
+  if(authState === null) return <div className='font-bold text-center text-5xl'>loading...</div>
+  if(authState === 'login') return <Login setAuthState={setAuthState} setUser={setUser}/>
+  if(authState === 'register') return <Register setAuthState={setAuthState} setUser={setUser}/> 
+  if(user) return <Home user={user} setAuthState={setAuthState} setUser={setUser}/>
 }
 
 export default App;
+
+
+
+
+
+
 
