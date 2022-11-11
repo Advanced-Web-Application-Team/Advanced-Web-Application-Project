@@ -15,6 +15,7 @@ let V1router = require("./routes/V1route");
 let V1Virouter = require("./routes/V1Viroute");
 let V2router = require("./routes/V2route");
 let V3router = require("./routes/V3route");
+let V4router = require("./routes/V4route");
 let V5router = require("./routes/V5route");
 let V6router = require("./routes/V6Route");
 //Global environment config
@@ -33,6 +34,7 @@ const V1 = require("./models/V1Model");
 const V1Vi = require("./models/V1visualization");
 const V2 = require("./models/V2Model");
 const V3 = require("./models/V3model");
+const V4 = require("./models/V4model");
 const V5 = require('./models/V5model');
 const V6 = require("./models/V6model");
 //Port defined
@@ -43,6 +45,7 @@ app.use("/v1vi", V1Virouter);
 app.use("/v1", V1router);
 app.use("/v2", V2router);
 app.use("/v3", V3router);
+app.use("/v4", V4router);
 app.use("/v5", V5router);
 app.use("/v6", V6router);
 //Error handling
