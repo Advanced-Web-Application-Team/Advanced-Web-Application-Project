@@ -6,6 +6,7 @@ import Header from "./components/screens/UI components/Header";
 import Navbar from "./components/screens/UI components/Navbar"
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LineChartOfV2 from './components/AllChartDesigns/LineChartOfV2';
 import LineChartOfV3 from './components/AllChartDesigns/LineChartOfV3';
 import LineChartOfV4 from './components/AllChartDesigns/LineChartOfV4';
 import LineChartOfV5 from './components/AllChartDesigns/LineChartOfV5';
@@ -17,6 +18,7 @@ import { LineChartProvider } from './context/LineChartContext';
 let arrayScreen = [];
 
 arrayScreen.push({id: "v1", item: <LineChart />});
+arrayScreen.push({id: "v2", item: <LineChartOfV2 />});
 arrayScreen.push({id: "v3", item: <LineChartOfV3 />});
 arrayScreen.push({id: "v4", item: <LineChartOfV4 />});
 arrayScreen.push({id: "v5", item: <LineChartOfV5 />});

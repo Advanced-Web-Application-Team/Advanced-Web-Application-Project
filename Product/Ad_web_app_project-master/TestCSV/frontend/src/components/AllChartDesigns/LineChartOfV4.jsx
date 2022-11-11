@@ -165,7 +165,7 @@ function LineChartOfV4() {
             For greater details on the experimental techniques used on the DE08, DE08-2, and DSS ice cores, please refer to Etheridge et al. (1996).
             </p>
             <span>The atmospheric CO2 reconstructions presented here offer records of atmospheric CO2 mixing ratios from 1006 A.D. to 1978 A.D.</span>
-            <p style={{textAlign: "left", paddingTop: "20px",}}> <span style={{fontWeight: "bold"}}> Data source:</span> https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat </p>
+            <p style={{textAlign: "left", paddingTop: "20px",}}> <span style={{fontWeight: "bold"}}> Link to data source for description:</span> https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat </p>
         </div>
     </div>
   )

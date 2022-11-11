@@ -5,6 +5,7 @@ import { Splide } from '@splidejs/react-splide';
 import { SplideSlide } from '@splidejs/react-splide';
 import Carousel from '../UI components/Carousel';
 import LineChart from '../../AllChartDesigns/LineChart';
+import LineChartOfV2 from '../../AllChartDesigns/LineChartOfV2';
 import LineChartOfV3 from '../../AllChartDesigns/LineChartOfV3';
 import LineChartOfV4 from '../../AllChartDesigns/LineChartOfV4';
 import LineChartOfV5 from '../../AllChartDesigns/LineChartOfV5';
@@ -15,6 +16,7 @@ import LineChartOfV6 from '../../AllChartDesigns/LineChartOfV6';
 let arrayScreen = [];
 
 arrayScreen.push({id: "v1", item: <LineChart />});
+arrayScreen.push({id: "v2", item: <LineChartOfV2 />})
 arrayScreen.push({id: "v3", item: <LineChartOfV3 />});
 arrayScreen.push({id: "v4", item: <LineChartOfV4 />});
 arrayScreen.push({id: "v5", item: <LineChartOfV5 />});

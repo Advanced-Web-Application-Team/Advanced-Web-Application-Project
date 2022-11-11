@@ -46,7 +46,7 @@ import {
         },
         title: {
           display: true,
-          text: 'Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958 (https://gml.noaa.gov/ccgg/about/co2_measurements.html)',
+          text: 'Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958 (https://gml.noaa.gov/ccgg/trends/)',
         },
         subtitle: {
           display: true,
@@ -136,7 +136,7 @@ function LineChartOfV3() {
             <p className='text-left mb-3'> - Ongoing comparisons of independent measurements at the same site allow an estimate of the accuracy, which is generally better than 0.2 ppm. </p>
         
 
-        <p style={{textAlign: "left"}}> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> https://gml.noaa.gov/ccgg/about/co2_measurements.html </p>
+        <p style={{textAlign: "left"}}> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> https://gml.noaa.gov/ccgg/about/co2_measurements.html</p>
     </div>
 </div>
   )

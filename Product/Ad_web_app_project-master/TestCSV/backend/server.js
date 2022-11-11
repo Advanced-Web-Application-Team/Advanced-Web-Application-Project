@@ -99,38 +99,45 @@ app.use(errorHandler);
 //    csv()
 //   .fromFile(req.file.path)
 //     .then(async (jsonObj) => {
-//       let newArray = [];
-//        jsonObj.forEach((obj) => {
-//           let newObj = {};
-//           let year = parseInt(obj.Time.split("-")[0]);
-            
-//              let stringOfMonth = obj.Time.split("-")[1];
+     
+//         let newArray = [];
 
-//              let monthString = "";
-
-//             if (stringOfMonth.charAt(0) === "0") {
-//                  monthString += stringOfMonth.charAt(1);
+//         jsonObj.forEach((obj) => {
+//             let newObj = {};
+//             let valueOfNorthRecon = 0.0;
+//             if (obj.northern_reconstruction === "") {
+//                 valueOfNorthRecon = 0;
 //             } else {
-//                  monthString += stringOfMonth;
+//                 valueOfNorthRecon = parseFloat(obj.northern_reconstruction);
 //             }
 
-//             let monthValue = parseInt(monthString);
+//             let year = parseInt(obj.Time.split("-")[0]);
+             
+//             let stringOfMonth = obj.Time.split("-")[1];
+             
+//             let monthString = "";
+             
+//             if (stringOfMonth.charAt(0) === "0") {
+//                 monthString += stringOfMonth.charAt(1);
+//             } else {
+//                 monthString += stringOfMonth;
+//             }
 
-//             newObj.year = year;
-//             newObj.month = monthValue;
+//             newObj.year = parseInt(year);
+//             newObj.month = parseInt(monthString);
 //             newObj.southern_monthly = parseFloat(obj.southern_monthly);
 //             newObj.southern_annual = parseFloat(obj.southern_annual);
-//             newObj.northern_monthly= parseFloat(obj.northern_monthly);
+//             newObj.northern_monthly = parseFloat(obj.northern_monthly);
 //             newObj.northern_annual = parseFloat(obj.northern_annual);
 //             newObj.global_monthly = parseFloat(obj.global_monthly);
 //             newObj.global_annual = parseFloat(obj.global_annual);
-//             newObj.northern_reconstruction = parseFloat(obj.northern_reconstruction);
+//             newObj.northern_reconstruction = valueOfNorthRecon;
 //             newObj.chartNumber = "v2";
 
-//            newArray.push(newObj);
-//             console.log(obj);
-//          });
+//             newArray.push(newObj);
+//         });
 
+//         await V2.insertMany(newArray);
        
 //      }) 
 // });
@@ -173,6 +180,14 @@ app.use(errorHandler);
        
 //       }) 
 //  });
+
+
+
+
+
+
+
+
  
 //Upload V5 data
 
