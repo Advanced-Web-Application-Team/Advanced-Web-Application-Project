@@ -9,6 +9,7 @@ const LineChartContext = createContext({
     allDataOfV4: [],
     allDataOfV5: [],
     allDataOfV6: [],
+    allDataOfV7: [],
     fetchAllData: () => {},
     fetchAllDataOfV3: () => {}
 });
@@ -20,6 +21,7 @@ const API_URL_OF_V3 = "/v3/";
 const API_URL_OF_V4 = "/v4/";
 const API_URL_OF_V5 = "/v5/";
 const API_URL_OF_V6 = "/v6/";
+const API_URL_OF_V7 = "/v7/";
  
 const lineChartReducer = (state, action) => {
 
@@ -55,6 +57,11 @@ const lineChartReducer = (state, action) => {
                 ...state,
                 allDataOfV6: action.payload
             }
+            case "ALL_DATA_OF_V7":
+                return {
+                    ...state,
+                    allDataOfV7: action.payload
+                }
         default: 
             return state
     }
@@ -68,7 +75,8 @@ export const LineChartProvider = ({children}) => {
         allDataOfV3: [],
         allDataOfV4: [],
         allDataOfV5: [],
-        allDataOfV6: [] 
+        allDataOfV6: [], 
+        allDataOfV7: [] 
     };
     let [state, dispatch] = useReducer(lineChartReducer, initialState);
 
@@ -139,6 +147,19 @@ export const LineChartProvider = ({children}) => {
             type: "ALL_DATA_OF_V6",
             payload: data
         })
+        
+    };
+
+    const fetchAllDataOfV7 = async () => {
+        let response = await axios.get(API_URL_OF_V7 + "all");
+
+        let data = response.data;
+
+        dispatch({
+            type: "ALL_DATA_OF_V7",
+            payload: data
+        })
+        
     };
 
 
@@ -160,7 +181,10 @@ export const LineChartProvider = ({children}) => {
         fetchAllDataOfV5: fetchAllDataOfV5,
 
         allDataOfV6: state.allDataOfV6,
-        fetchAllDataOfV6: fetchAllDataOfV6
+        fetchAllDataOfV6: fetchAllDataOfV6,
+
+        allDataOfV7: state.allDataOfV7,
+        fetchAllDataOfV7: fetchAllDataOfV7
     }}>
         {children}
     </LineChartContext.Provider>)

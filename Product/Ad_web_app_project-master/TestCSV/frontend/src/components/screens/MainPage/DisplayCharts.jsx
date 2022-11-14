@@ -10,6 +10,7 @@ import LineChartOfV3 from '../../AllChartDesigns/LineChartOfV3';
 import LineChartOfV4 from '../../AllChartDesigns/LineChartOfV4';
 import LineChartOfV5 from '../../AllChartDesigns/LineChartOfV5';
 import LineChartOfV6 from '../../AllChartDesigns/LineChartOfV6';
+import LineChartOfV7 from '../../AllChartDesigns/LineChartOfV7';
 
 
 
@@ -21,6 +22,7 @@ arrayScreen.push({id: "v3", item: <LineChartOfV3 />});
 arrayScreen.push({id: "v4", item: <LineChartOfV4 />});
 arrayScreen.push({id: "v5", item: <LineChartOfV5 />});
 arrayScreen.push({id: "v6", item: <LineChartOfV6 />});
+arrayScreen.push({id: "v7", item: <LineChartOfV7 />});
 
 
 function DisplayCharts({}) {
