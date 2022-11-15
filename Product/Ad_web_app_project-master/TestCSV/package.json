@@ -11,6 +11,7 @@
   "author": "Thong Dang",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "chartjs-adapter-date-fns": "^2.0.0",
     "colors": "^1.4.0",
     "concurrently": "^7.5.0",
