@@ -10,6 +10,7 @@ let connectDB = require("./config/db");
 let errorHandler = require("./middleware/errorHandler");
 
 
+
 //Route declare
 let V1router = require("./routes/V1route");
 let V1Virouter = require("./routes/V1Viroute");
@@ -21,6 +22,8 @@ let V6router = require("./routes/V6Route");
 let V7router = require("./routes/V7Route");
 let V8router = require("./routes/V8Route");
 let V9router = require("./routes/V9Route");
+let authRoute = require("./routes/auth");
+let userRoute = require("./routes/users");
 //Global environment config
 dotenv.config();
 
@@ -32,6 +35,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+
 // Model declared
 const V1 = require("./models/V1Model");
 const V1Vi = require("./models/V1visualization");
@@ -42,8 +47,11 @@ const V5 = require('./models/V5model');
 const V6 = require("./models/V6model");
 const V7 = require("./models/V7model");
 const V8 = require("./models/V8model");
+
 //Port defined
 const PORT = process.env.PORT || 8000;
+
+
 
 //Set up route connection 
 app.use("/v1vi", V1Virouter);
@@ -56,8 +64,17 @@ app.use("/v6", V6router);
 app.use("/v7", V7router);
 app.use("/v8", V8router);
 app.use("/v9", V9router);
+
+
+
+
+//users
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+
 //Error handling
 app.use(errorHandler);
+
 
 
 //Upload V1 dataset

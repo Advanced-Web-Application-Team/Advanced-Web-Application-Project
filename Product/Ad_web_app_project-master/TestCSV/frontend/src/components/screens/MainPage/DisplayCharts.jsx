@@ -15,7 +15,7 @@ import LineChartOfV8 from '../../AllChartDesigns/LineChartOfV8';
 import LineChartOfV9 from '../../AllChartDesigns/LineChartOfV9';
 
 
-
+//Array of charts
 let arrayScreen = [];
 
 arrayScreen.push({id: "v1", item: <LineChart />});
@@ -28,7 +28,7 @@ arrayScreen.push({id: "v7", item: <LineChartOfV7 />});
 arrayScreen.push({id: "v8", item: <LineChartOfV8 />});
 arrayScreen.push({id: "v9", item: <LineChartOfV9 />});
 
-
+//Page to display charts of Atmospheric C02 & temperatures
 function DisplayCharts({}) {
   console.log(arrayScreen);
   return (
