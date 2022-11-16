@@ -19,6 +19,8 @@ let V4router = require("./routes/V4route");
 let V5router = require("./routes/V5route");
 let V6router = require("./routes/V6Route");
 let V7router = require("./routes/V7Route");
+let V8router = require("./routes/V8Route");
+let V9router = require("./routes/V9Route");
 //Global environment config
 dotenv.config();
 
@@ -39,6 +41,7 @@ const V4 = require("./models/V4model");
 const V5 = require('./models/V5model');
 const V6 = require("./models/V6model");
 const V7 = require("./models/V7model");
+const V8 = require("./models/V8model");
 //Port defined
 const PORT = process.env.PORT || 8000;
 
@@ -51,6 +54,8 @@ app.use("/v4", V4router);
 app.use("/v5", V5router);
 app.use("/v6", V6router);
 app.use("/v7", V7router);
+app.use("/v8", V8router);
+app.use("/v9", V9router);
 //Error handling
 app.use(errorHandler);
 

@@ -10,6 +10,8 @@ const LineChartContext = createContext({
     allDataOfV5: [],
     allDataOfV6: [],
     allDataOfV7: [],
+    allDataOfV8: [],
+    allDataOfV9: [],
     fetchAllData: () => {},
     fetchAllDataOfV3: () => {}
 });
@@ -22,6 +24,8 @@ const API_URL_OF_V4 = "/v4/";
 const API_URL_OF_V5 = "/v5/";
 const API_URL_OF_V6 = "/v6/";
 const API_URL_OF_V7 = "/v7/";
+const API_URL_OF_V8 = "/v8/";
+const API_URL_OF_V9 = "/v9/";
  
 const lineChartReducer = (state, action) => {
 
@@ -62,6 +66,16 @@ const lineChartReducer = (state, action) => {
                     ...state,
                     allDataOfV7: action.payload
                 }
+                case "ALL_DATA_OF_V8":
+                return {
+                    ...state,
+                    allDataOfV8: action.payload
+                }
+                case "ALL_DATA_OF_V9":
+                    return {
+                        ...state,
+                        allDataOfV9: action.payload
+                    }
         default: 
             return state
     }
@@ -76,7 +90,9 @@ export const LineChartProvider = ({children}) => {
         allDataOfV4: [],
         allDataOfV5: [],
         allDataOfV6: [], 
-        allDataOfV7: [] 
+        allDataOfV7: [],
+        allDataOfV8: [], 
+        allDataOfV9: [], 
     };
     let [state, dispatch] = useReducer(lineChartReducer, initialState);
 
@@ -162,6 +178,30 @@ export const LineChartProvider = ({children}) => {
         
     };
 
+    const fetchAllDataOfV8 = async () => {
+        let response = await axios.get(API_URL_OF_V8 + "all");
+
+        let data = response.data;
+
+        dispatch({
+            type: "ALL_DATA_OF_V8",
+            payload: data
+        })
+        
+    };
+    
+    const fetchAllDataOfV9 = async () => {
+        let response = await axios.get(API_URL_OF_V9 + "all");
+
+        let data = response.data;
+
+        dispatch({
+            type: "ALL_DATA_OF_V9",
+            payload: data
+        })
+        
+    };
+
 
 
     return (<LineChartContext.Provider value={{
@@ -184,7 +224,13 @@ export const LineChartProvider = ({children}) => {
         fetchAllDataOfV6: fetchAllDataOfV6,
 
         allDataOfV7: state.allDataOfV7,
-        fetchAllDataOfV7: fetchAllDataOfV7
+        fetchAllDataOfV7: fetchAllDataOfV7,
+
+        allDataOfV8: state.allDataOfV8,
+        fetchAllDataOfV8: fetchAllDataOfV8,
+
+        allDataOfV9: state.allDataOfV9,
+        fetchAllDataOfV9: fetchAllDataOfV9,
     }}>
         {children}
     </LineChartContext.Provider>)

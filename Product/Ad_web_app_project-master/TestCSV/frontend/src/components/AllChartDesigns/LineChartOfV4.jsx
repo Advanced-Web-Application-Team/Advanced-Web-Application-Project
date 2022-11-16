@@ -149,7 +149,7 @@ function LineChartOfV4() {
         ]
     }
 
-  
+    console.log(data)
 
   return (
     <div>

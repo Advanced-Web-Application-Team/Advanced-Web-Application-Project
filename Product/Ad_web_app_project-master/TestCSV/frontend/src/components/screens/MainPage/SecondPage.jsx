@@ -5,8 +5,34 @@ import { SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import SingleChart from '../../SingleItem/SingleChart';
 import SingleChartCarousel from '../../SingleItem/SingleChartCarousel';
+import LineChartOfV8 from '../../AllChartDesigns/LineChartOfV8';
+import LineChartOfV9 from '../../AllChartDesigns/LineChartOfV9';
+import EachChart from '../../SingleItem/EachChart';
+
+let arrayScreen = [];
+
+arrayScreen.push({id: "v8", item: <LineChartOfV8 />});
+arrayScreen.push({id: "v9", item: <LineChartOfV9 />});
+
+
+
 function SecondPage() {
+
+  console.log(arrayScreen);
   return (
+    <div className="bg-stone-300 p-5">
+        {arrayScreen.map((item) => (
+          // <>
+          //   <h1 className='text-black text-center text-3xl my-5'> Visualization type: <span> {item.id} </span> </h1>
+          //   {item.item}
+          // </>
+          <EachChart key={item.id} id={item.id} singleItem={item.item}/>
+        ))}
+    </div>
+  )
+
+
+  /*return (
 
     <div className="bg-stone-300 py-36"> 
 
@@ -30,7 +56,8 @@ function SecondPage() {
         ))}
     </div>
     </div>
-  )
+  )*/
+  
 }
 
 export default SecondPage
