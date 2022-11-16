@@ -1,11 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+import {Provider} from "react-redux";
+import UserProfilePage from './components/screens/MainPage/UserProfilePage';
 import DisplayCharts from "./components/screens/MainPage/DisplayCharts";
-
+import store from './store/store';
 import Header from "./components/screens/UI components/Header";
-import Navbar from "./components/screens/UI components/Navbar"
+import Navbar from "./components/screens/UI components/Navbar";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
+import ProtectedScreen from './components/screens/ProtectScreen/ProtectedScreen';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LogIn from './components/screens/MainPage/LogIn';
+import Register from './components/screens/MainPage/Register';
 import LineChartOfV2 from './components/AllChartDesigns/LineChartOfV2';
 import LineChartOfV3 from './components/AllChartDesigns/LineChartOfV3';
 import LineChartOfV4 from './components/AllChartDesigns/LineChartOfV4';
@@ -42,6 +49,7 @@ function App() {
 
   return (
     <>
+    <Provider store={store}>
     <LineChartProvider>
       <Router>
       <Header openModal={openModal} />
@@ -53,9 +61,12 @@ function App() {
           <DisplayCharts arrayScreen={arrayScreen}/>
           }/>
           
-          {/* <Route path="/login" element={<LogIn />}/>
+          <Route path="/login" element={<LogIn />}/>
           <Route path="/register" element={<Register />}/>
-          <Route path ="/emission" element={<SecondPage />}/>
+          <Route path="/userprofile" element={<ProtectedScreen />}>
+          <Route path="/userprofile" element={<UserProfilePage />}/>
+          </Route>
+          {/* <Route path ="/emission" element={<SecondPage />}/>
           <Route path="/layoutdesign" element={<LayoutsForChart />} />
           <Route path="/publiclayout" element={<UserView />}/> */}
       </Routes>
@@ -65,7 +76,10 @@ function App() {
           <SingleChart key={item.id} id={item.id} item={item.item}/>
       ))}  */}
       </Router>
+
+      <ToastContainer />
     </LineChartProvider>
+    </Provider>
     </>
   );
 }

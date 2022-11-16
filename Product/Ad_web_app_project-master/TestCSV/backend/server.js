@@ -48,6 +48,8 @@ const V7 = require("./models/V7model");
 //Port defined
 const PORT = process.env.PORT || 8000;
 
+
+
 //Set up route connection 
 app.use("/v1vi", V1Virouter);
 app.use("/v1", V1router);
@@ -57,12 +59,17 @@ app.use("/v4", V4router);
 app.use("/v5", V5router);
 app.use("/v6", V6router);
 app.use("/v7", V7router);
-//Error handling
-app.use(errorHandler);
+
+
+
 
 //users
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+
+//Error handling
+app.use(errorHandler);
+
 
 
 //Upload V1 dataset
