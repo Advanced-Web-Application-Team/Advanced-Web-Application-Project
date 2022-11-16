@@ -11,8 +11,7 @@ import LineChartOfV4 from '../../AllChartDesigns/LineChartOfV4';
 import LineChartOfV5 from '../../AllChartDesigns/LineChartOfV5';
 import LineChartOfV6 from '../../AllChartDesigns/LineChartOfV6';
 import LineChartOfV7 from '../../AllChartDesigns/LineChartOfV7';
-import LineChartOfV8 from '../../AllChartDesigns/LineChartOfV8';
-import LineChartOfV9 from '../../AllChartDesigns/LineChartOfV9';
+
 
 
 //Array of charts
@@ -25,8 +24,6 @@ arrayScreen.push({id: "v4", item: <LineChartOfV4 />});
 arrayScreen.push({id: "v5", item: <LineChartOfV5 />});
 arrayScreen.push({id: "v6", item: <LineChartOfV6 />});
 arrayScreen.push({id: "v7", item: <LineChartOfV7 />});
-arrayScreen.push({id: "v8", item: <LineChartOfV8 />});
-arrayScreen.push({id: "v9", item: <LineChartOfV9 />});
 
 //Page to display charts of Atmospheric C02 & temperatures
 function DisplayCharts({}) {

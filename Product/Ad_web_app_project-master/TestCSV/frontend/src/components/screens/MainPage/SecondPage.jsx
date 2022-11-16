@@ -3,8 +3,6 @@ import mockData from "../../../data/mockdata";
 import { Splide } from '@splidejs/react-splide';
 import { SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
-import SingleChart from '../../SingleItem/SingleChart';
-import SingleChartCarousel from '../../SingleItem/SingleChartCarousel';
 import LineChartOfV8 from '../../AllChartDesigns/LineChartOfV8';
 import LineChartOfV9 from '../../AllChartDesigns/LineChartOfV9';
 import EachChart from '../../SingleItem/EachChart';
