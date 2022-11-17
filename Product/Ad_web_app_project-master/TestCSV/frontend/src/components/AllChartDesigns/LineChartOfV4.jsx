@@ -106,7 +106,7 @@ function LineChartOfV4() {
 
     let de08_mixing_ratio = allDataOfV4.map((data) => ({
         x: data.year,
-        y: data. de08_co2_mixing_ratio
+        y: data.de08_co2_mixing_ratio
     }));
 
     let de08_2_mixing_ratio = allDataOfV4.map((data) => ({
@@ -148,7 +148,7 @@ function LineChartOfV4() {
             },
         ]
     }
-
+ console.log(data)
 
   return (
     <div>

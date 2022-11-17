@@ -58,12 +58,11 @@ const options = {
         text: 'Custom Chart Subtitle'
     },
     scales: {
-        xAxes: [{
+        xAxes: 
+        [{
           type: 'time',
-          time: {
-            unit: 'month'
-          }
         }],
+        yAxes: [{stacked: true}]
       }      
 ,
       zoom: {
@@ -96,23 +95,40 @@ function LineChartOfV8() {
     },[]);
     
     //Filter data for visualization
-    let yearArray = allDataOfV8.map((data) => data.time);
-    let countries = allDataOfV8.map((data,i) => data.countries[i]);
-   
+    let years = allDataOfV8.map((data) => data.time);
+  
+
+let testArray =[]
+for (let i = 0; i < 218; i++) {
+
+ var test = allDataOfV8.map((value) => 
+  ( 
+    {
+      x: value.time,
+      y: value.countries[i],
+    }
+  ));
+  testArray.push(test)
+}
+
+  console.log(testArray)
+
+
  
 
     const data = {
-        labels: yearArray,
-        datasets: allDataOfV8.map((value,i) => (
+        labels: years,
+        datasets: testArray.map((data,i) => (
             {
-                label: Object.keys(value.countries[i]),
-                data: value.countries[i],
+                label: "test",
+                data:  testArray[i],
                 borderColor: "rgb(238, 75, 43)",
                 backgroundColor: 'rgba(238, 75, 43)'
-            }))
+            }
+            
+            ))
     }
-   console.log(data)
-
+console.log(data)
 
   return (
     <div>
