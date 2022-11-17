@@ -9,15 +9,6 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
-     
-
-
-      
-    
-
-
-
 function LineChartOfV9() {
 
     let {allDataOfV9, fetchAllDataOfV9} = useContext(LineChartContext); 
@@ -27,22 +18,22 @@ function LineChartOfV9() {
         fetchAllDataOfV9();
     },[]);
     
-  
-
-
-  
+    let mainSector = allDataOfV9.map((data) => data.sector)
+    let Data = allDataOfV9.map((data) => data.Share_of_global_greenhouse_gas_emissions)
       const data = {
+         labels: mainSector,
           datasets:
               [{
                   label: "test",
-                  data: [1,2,3,4,5,6,7,8,9],
+                  data: Data,
                   borderColor: "rgb(238, 75, 43)",
                   backgroundColor: 'rgba(238, 75, 43)'
               }]
             
       }
+
   
-    console.log(data)
+  
 
 
 

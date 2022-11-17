@@ -51,7 +51,7 @@ const options = {
       },
       title: {
         display: true,
-        text: 'Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements (https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html)',
+        text: 'Chart of all countries (Change this later)',
       },
       subtitle: {
         display: true,
@@ -97,27 +97,22 @@ function LineChartOfV8() {
     
     //Filter data for visualization
     let yearArray = allDataOfV8.map((data) => data.time);
- 
-    
-
-      let test = allDataOfV8.map((value) => ({
-        x: value.time,
-        y: value.Countries,
-     }));
+    let countries = allDataOfV8.map((data,i) => data.countries[i]);
    
-    
+ 
+
     const data = {
         labels: yearArray,
-        datasets: allDataOfV8.map((data,i) => (
+        datasets: allDataOfV8.map((value,i) => (
             {
-                label: "Finland",
-                data: test,
+                label: Object.keys(value.countries[i]),
+                data: value.countries[i],
                 borderColor: "rgb(238, 75, 43)",
                 backgroundColor: 'rgba(238, 75, 43)'
             }))
     }
+   console.log(data)
 
-  console.log(data)
 
   return (
     <div>

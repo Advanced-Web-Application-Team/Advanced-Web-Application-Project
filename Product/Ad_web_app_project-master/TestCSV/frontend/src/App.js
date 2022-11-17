@@ -37,6 +37,8 @@ arrayScreen.push({id: "v6", item: <LineChartOfV6 />});
 arrayScreen.push({id: "v7", item: <LineChartOfV7 />});
 arrayScreen.push({id: "v8", item: <LineChartOfV8 />});
 arrayScreen.push({id: "v9", item: <LineChartOfV9 />});
+
+
 function App() {
 
 
@@ -71,8 +73,7 @@ function App() {
           <Route path="/userprofile" element={<ProtectedScreen />}>
           <Route path="/userprofile" element={<UserProfilePage />}/>
           </Route>
-          {/* <Route path ="/emission" element={<SecondPage />}/>
-          <Route path="/layoutdesign" element={<LayoutsForChart />} />
+          { /*<Route path="/layoutdesign" element={<LayoutsForChart />} />
           <Route path="/publiclayout" element={<UserView />}/> */}
           <Route path ="/emission" element={<SecondPage />}/>
       </Routes>
