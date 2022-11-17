@@ -65,8 +65,7 @@ module.exports = {
       //not sending password back to users
           const { password, ...others } = user._doc;
           res.status(200).json({
-            username: user.username,
-            email: user.email,
+            ...others,
             token: getToken(user._id)
           });
         } catch (err) {
