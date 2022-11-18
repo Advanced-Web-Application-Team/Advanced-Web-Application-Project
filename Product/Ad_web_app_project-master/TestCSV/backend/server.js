@@ -286,7 +286,9 @@ app.post("/", upload.single("file"), async (req, res, next) => {
             let newObj = {time, countries,chartNumber};
             
              newObj.time = parseFloat(obj.time);
-             newObj.countries = [obj.Afghanistan,
+
+             newObj.countries = [
+              obj.Afghanistan,
               obj.Albania,
               obj.Algeria,
               obj.Andorra,
