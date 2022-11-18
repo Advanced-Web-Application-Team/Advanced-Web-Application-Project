@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
 const jwt = require('jsonwebtoken');
+const validatePassword = require("./validatePassword")
 
 module.exports = {
 
@@ -21,6 +22,12 @@ module.exports = {
           res.status(400)
           throw new Error("Email already exists! Please fill again.");
         }
+        
+        let validPassword = validatePassword(req.body.password)
+        if(!validPassword){
+          res.status(400)
+          throw new Error("Invalid password, password should contain at least 8 characters with numbers,lowercase & uppercase letters!!")
+        }
 
         try {
 
@@ -34,6 +41,7 @@ module.exports = {
       
           const user = await newUser.save();
           res.status(200).json({
+            userId: user._id,
             username: user.username,
             email: user.email,
             token: getToken(user._id)
