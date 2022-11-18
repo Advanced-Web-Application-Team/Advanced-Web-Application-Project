@@ -12,8 +12,6 @@ let errorHandler = require("./middleware/errorHandler");
 
 
 //Route declare
-let V1router = require("./routes/V1route");
-let V1Virouter = require("./routes/V1Viroute");
 let V2router = require("./routes/V2route");
 let V3router = require("./routes/V3route");
 let V4router = require("./routes/V4route");
@@ -38,8 +36,6 @@ app.use(express.urlencoded({ extended: false }));
 
 
 // Model declared
-const V1 = require("./models/V1Model");
-const V1Vi = require("./models/V1visualization");
 const V2 = require("./models/V2Model");
 const V3 = require("./models/V3model");
 const V4 = require("./models/V4model");
@@ -54,8 +50,6 @@ const PORT = process.env.PORT || 8000;
 
 
 //Set up route connection 
-app.use("/v1vi", V1Virouter);
-app.use("/v1", V1router);
 app.use("/v2", V2router);
 app.use("/v3", V3router);
 app.use("/v4", V4router);

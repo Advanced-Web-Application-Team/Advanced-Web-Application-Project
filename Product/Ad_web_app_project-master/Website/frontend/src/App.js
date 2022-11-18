@@ -22,13 +22,10 @@ import LineChartOfV6 from './components/AllChartDesigns/LineChartOfV6';
 import LineChartOfV7 from './components/AllChartDesigns/LineChartOfV7';
 import LineChartOfV8 from './components/AllChartDesigns/LineChartOfV8';
 import LineChartOfV9 from './components/AllChartDesigns/LineChartOfV9';
-import LineChart from './components/AllChartDesigns/LineChart';
 import { LineChartProvider } from './context/LineChartContext';
 
 
 let arrayScreen = [];
-
-arrayScreen.push({id: "v1", item: <LineChart />});
 arrayScreen.push({id: "v2", item: <LineChartOfV2 />});
 arrayScreen.push({id: "v3", item: <LineChartOfV3 />});
 arrayScreen.push({id: "v4", item: <LineChartOfV4 />});

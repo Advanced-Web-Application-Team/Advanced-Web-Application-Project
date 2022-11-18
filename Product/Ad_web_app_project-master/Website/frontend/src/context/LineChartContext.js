@@ -3,7 +3,6 @@ import { useReducer } from "react";
 import axios from "axios";
 
 const LineChartContext = createContext({
-    allData: [],
     allDataOfV2: [],
     allDataOfV3: [],
     allDataOfV4: [],
@@ -12,11 +11,9 @@ const LineChartContext = createContext({
     allDataOfV7: [],
     allDataOfV8: [],
     allDataOfV9: [],
-    fetchAllData: () => {},
     fetchAllDataOfV3: () => {}
 });
 
-const API_URL = "/v1/";
 const API_SECOND_URL_OF_V1 = "/v1vi/";
 const API_URL_OF_V2 = "/v2/";
 const API_URL_OF_V3 = "/v3/";
@@ -30,12 +27,6 @@ const API_URL_OF_V9 = "/v9/";
 const lineChartReducer = (state, action) => {
 
     switch (action.type) {
-        case "ALL_DATA": {
-            return {
-                ...state,
-                allData: action.payload
-            }
-        }
         case "ALL_DATA_OF_V2":
             return {
                 ...state,
@@ -84,7 +75,6 @@ const lineChartReducer = (state, action) => {
 export const LineChartProvider = ({children}) => {
 
     let initialState = {
-        allData: [],
         allDataOfV2: [],
         allDataOfV3: [],
         allDataOfV4: [],
@@ -95,20 +85,6 @@ export const LineChartProvider = ({children}) => {
         allDataOfV9: [], 
     };
     let [state, dispatch] = useReducer(lineChartReducer, initialState);
-
-    const fetchAllData = async () => {
-
-        let response = await axios.get(API_SECOND_URL_OF_V1);
-
-        let data = response.data;
-
-        dispatch({
-            type: "ALL_DATA",
-            payload: data
-        })
-
-    }; 
-
     const fetchAllDataOfV2 = async () => {
         let response = await axios.get(API_URL_OF_V2 + "all");
 
@@ -205,9 +181,6 @@ export const LineChartProvider = ({children}) => {
 
 
     return (<LineChartContext.Provider value={{
-        allData: state.allData,
-        fetchAllData: fetchAllData, 
-
         allDataOfV2: state.allDataOfV2,
         fetchAllDataOfV2: fetchAllDataOfV2,
 

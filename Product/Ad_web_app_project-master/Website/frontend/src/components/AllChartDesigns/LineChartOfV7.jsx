@@ -29,6 +29,7 @@ import {
     );
   
   const options = {
+      tooltips: {mode:'index'},
       responsive: true,
       interaction: {mode: 'index', intersect:false},
       stacked:false,
@@ -109,6 +110,14 @@ function LineChartOfV7() {
       y: value.surface_temp,
   }));
 
+//Make it so that it will show later
+let Events = allDataOfV7.map((value) => 
+({
+    x: value.time,
+    y: value.Event,
+}));
+
+console.log(Events)
     const data = {
         labels: yearLabels,
         datasets: [
@@ -126,6 +135,12 @@ function LineChartOfV7() {
               backgroundColor: 'rgba(0,0,255)',
               yAxisID:"B"
           },
+          {
+            label: "Events",
+            data: Events,
+            borderColor: "rgb(0,0,255)",
+            backgroundColor: 'rgba(0,0,255)',
+        },
         ]
     }
 

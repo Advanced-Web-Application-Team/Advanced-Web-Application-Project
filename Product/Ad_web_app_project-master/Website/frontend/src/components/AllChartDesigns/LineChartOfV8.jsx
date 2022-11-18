@@ -62,7 +62,10 @@ const options = {
         [{
           type: 'time',
         }],
-        yAxes: [{stacked: true}]
+        yAxes: 
+        [
+          {stacked: true}
+        ]
       }      
 ,
       zoom: {
