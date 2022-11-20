@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import LineChartContext from '../../context/LineChartContext';
+import ChartContext from '../../context/LineChartContext';
 import 'chartjs-adapter-date-fns';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -9,9 +9,9 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function LineChartOfV9() {
+function DoughnutChartOfV9() {
 
-    let {allDataOfV9, fetchAllDataOfV9} = useContext(LineChartContext); 
+    let {allDataOfV9, fetchAllDataOfV9} = useContext(ChartContext); 
     
 
     useEffect(() => {
@@ -52,4 +52,4 @@ function LineChartOfV9() {
   )
 }
 
-export default LineChartOfV9
+export default DoughnutChartOfV9

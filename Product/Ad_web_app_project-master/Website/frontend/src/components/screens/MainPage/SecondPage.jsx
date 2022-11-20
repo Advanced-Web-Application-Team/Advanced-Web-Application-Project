@@ -4,13 +4,13 @@ import { Splide } from '@splidejs/react-splide';
 import { SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import LineChartOfV8 from '../../AllChartDesigns/LineChartOfV8';
-import LineChartOfV9 from '../../AllChartDesigns/LineChartOfV9';
+import DoughnutChartOfV9 from '../../AllChartDesigns/DoughnutChartOfV9';
 import EachChart from '../../SingleItem/EachChart';
 
 let arrayScreen = [];
 
 arrayScreen.push({id: "v8", item: <LineChartOfV8 />});
-arrayScreen.push({id: "v9", item: <LineChartOfV9 />});
+arrayScreen.push({id: "v9", item: <DoughnutChartOfV9 />});
 
 
 

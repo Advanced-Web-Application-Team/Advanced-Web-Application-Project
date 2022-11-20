@@ -29,7 +29,6 @@ import {
     );
   
   const options = {
-      tooltips: {mode:'index'},
       responsive: true,
       interaction: {mode: 'index', intersect:false},
       stacked:false,

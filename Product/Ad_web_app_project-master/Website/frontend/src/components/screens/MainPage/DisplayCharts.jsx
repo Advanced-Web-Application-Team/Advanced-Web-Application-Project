@@ -15,7 +15,7 @@ import LineChartOfV7 from '../../AllChartDesigns/LineChartOfV7';
 
 //Array of charts
 let arrayScreen = [];
-arrayScreen.push({id: "v2", item: <LineChartOfV2 />})
+arrayScreen.push({id: "v1v2", item: <LineChartOfV2 />})
 arrayScreen.push({id: "v3", item: <LineChartOfV3 />});
 arrayScreen.push({id: "v4", item: <LineChartOfV4 />});
 arrayScreen.push({id: "v5", item: <LineChartOfV5 />});

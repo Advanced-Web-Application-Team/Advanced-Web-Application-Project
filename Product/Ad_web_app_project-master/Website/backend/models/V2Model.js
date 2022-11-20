@@ -2,8 +2,7 @@
 const mongoose = require("mongoose");
 
 const V2Schema = new mongoose.Schema({
-    year: Number,
-    month: Number,
+    Time: Number,
     southern_monthly: Number,
     southern_annual: Number,
     northern_monthly: Number,
@@ -11,7 +10,6 @@ const V2Schema = new mongoose.Schema({
     global_monthly: Number,
     global_annual: Number,
     northern_reconstruction: Number,
-    chartNumber: String,
 });
 
 module.exports = mongoose.model("V2", V2Schema);

@@ -48,7 +48,7 @@ import {
         },
         title: {
           display: true,
-          text: 'Northern Hemisphere 2,000-year temperature reconstruction (https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt)',
+          text: 'Global historical surface temperature anomalies from January 1850 onwards and the Northern Hemisphere 2,000-year temperature reconstruction',
         },
         subtitle: {
           display: true,
@@ -91,41 +91,41 @@ function LineChartOfV2() {
         fetchAllDataOfV2();
     },[]);
     
-    let yearArray = allDataOfV2.map((data) => data.year);
+    let yearArray = allDataOfV2.map((data) => data.Time);
     let distinctYearArray = yearArray.filter((a, b) => yearArray.indexOf(a) === b);
    
     let southMonthlyArray = allDataOfV2.map((data) => ({
-        x: data.year,
+        x: data.Time,
         y: data.southern_monthly
     }));
 
     let southAnnualArray = allDataOfV2.map((data) => ({
-        x: data.year,
+        x: data.Time,
         y: data.southern_annual
     }));
 
     let northMonthlyArray = allDataOfV2.map((data) => ({
-        x: data.year,
+        x: data.Time,
         y: data.northern_monthly
     }));
 
     let northAnnualArray = allDataOfV2.map((data) => ({
-        x: data.year,
+        x: data.Time,
         y: data.northern_annual
     }));
 
     let globalMonthlyArray = allDataOfV2.map((data) => ({
-        x: data.year,
+        x: data.Time,
         y: data.global_monthly
     }));
 
     let globalAnnualArray = allDataOfV2.map((data) => ({
-        x: data.year,
+        x: data.Time,
         y: data.global_annual
     }));
 
     let northReconstruction = allDataOfV2.map((data) => ({
-        x: data.year,
+        x: data.Time,
         y: data.northern_reconstruction
     }));
 
@@ -169,14 +169,14 @@ function LineChartOfV2() {
                 backgroundColor: "rgba(0, 87, 0, 0.53)"
             },
             {
-                label: "Northern Reconstruction",
+                label: "2000 Year Temperatures",
                 data: northReconstruction,
                 borderColor: "rgb(242, 13, 13)",
                 backgroundColor: "rgb(242, 13, 13, 0.53)"
             }
         ]
     }
-
+ console.log(data)
 
   return (
     <div>
@@ -185,13 +185,15 @@ function LineChartOfV2() {
 
         <h3 className='text-black font-bold text-2xl my-5 text-center'> Description</h3>
         <p className='text-left mb-5'> 
-        The graph shows the temparature change average of the year in Kelvin (Temperature anomalies) in the Northen Hemisphere from the year 1850 onwards.
-        Northern Hemisphere temperature reconstruction for the past 2,000 years by combining low-resolution proxies with tree-ring data, using a wavelet transform technique to achieve timescale-dependent processing of the data.
+        The graph shows the temparature change average of the year in Kelvin (Temperature anomalies) in the Northen Hemisphere from the year 1 to onwards and the anomalities of the temperature on a global scale.
+        Northern Hemisphere temperature reconstruction for the past 2,000 years is shown by combining low-resolution proxies with tree-ring data, using a wavelet transform technique to achieve timescale-dependent processing of the data.
         </p>
 
         <p style={{textAlign: "left"}}> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> 
-        <p> https://gml.noaa.gov/ccgg/about/co2_measurements.html </p> 
-        <p> https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005 </p>
+        <p> https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt </p> 
+        <p> https://www.metoffice.gov.uk/hadobs/hadcrut5/ </p>
+        <p style={{fontWeight: "bold"}}> Data measurements:</p>
+        <p> https://gml.noaa.gov/ccgg/about/co2_measurements.html</p>
         </p>
     </div>
 </div>

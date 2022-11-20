@@ -21,7 +21,7 @@ import LineChartOfV5 from './components/AllChartDesigns/LineChartOfV5';
 import LineChartOfV6 from './components/AllChartDesigns/LineChartOfV6';
 import LineChartOfV7 from './components/AllChartDesigns/LineChartOfV7';
 import LineChartOfV8 from './components/AllChartDesigns/LineChartOfV8';
-import LineChartOfV9 from './components/AllChartDesigns/LineChartOfV9';
+import DoughnutChartOfV9 from './components/AllChartDesigns/DoughnutChartOfV9';
 import { LineChartProvider } from './context/LineChartContext';
 
 
@@ -33,7 +33,7 @@ arrayScreen.push({id: "v5", item: <LineChartOfV5 />});
 arrayScreen.push({id: "v6", item: <LineChartOfV6 />});
 arrayScreen.push({id: "v7", item: <LineChartOfV7 />});
 arrayScreen.push({id: "v8", item: <LineChartOfV8 />});
-arrayScreen.push({id: "v9", item: <LineChartOfV9 />});
+arrayScreen.push({id: "v9", item: <DoughnutChartOfV9 />});
 
 
 function App() {
