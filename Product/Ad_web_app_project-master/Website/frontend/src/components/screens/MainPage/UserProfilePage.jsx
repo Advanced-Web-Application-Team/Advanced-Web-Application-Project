@@ -18,7 +18,7 @@ function UserProfilePage() {
         <div className='container mx-auto p-5'>
             <h1 className='text-black text-3xl font-bold my-5'> Profile Page: {user.username}</h1>
 
-            <div className='bg-gray-100 w-8/12 xl:w-6/12 lg:w-6/12 md:w-6/12 border-2 rounded-lg border-black p-10 shadow-lg'>
+            <div className='bg-gray-100 w-10/12 xl:w-6/12 lg:w-6/12 md:w-6/12 border-2 rounded-lg border-black p-10 shadow-lg'>
                
                     <h3 className='text-black font-bold text-xl'> Name: {user.username}</h3>
     

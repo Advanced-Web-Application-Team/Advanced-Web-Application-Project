@@ -38,7 +38,7 @@ function LogIn() {
       navigate("/userprofile");
       dispatch(resetAfterLogin());
     } else if (user.username) {
-      navigate("/userprofile");
+      navigate("/");
     }
 
 

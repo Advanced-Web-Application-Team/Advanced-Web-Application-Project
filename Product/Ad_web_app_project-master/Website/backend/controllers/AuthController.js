@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const validatePassword = require("./validatePassword");
 const validateEmail = require("./validateEmail");
 const validateUsername = require("./validateUsername");
-const validateUsername = require("./validateUsername");
 
 module.exports = {
   authRegister: asyncHandler(async (req, res) => {
