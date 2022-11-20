@@ -43,8 +43,10 @@ function Header({openModal}) {
     <div className='bg-purple-200 p-5'>
         
         <div className='container mx-auto flex items-center justify-between'>
+        <div className='flex items-center justify-center '>
         <GiHamburgerMenu className='inline-block left-5 top-6 cursor-pointer' size={30} onClick={handleClick}/>
-        <h1 className='text-center text-3xl font-bold px-5 cursor-pointer' onClick={goToMainPage}> Data Visualization Application </h1>
+        <h1 className='text-center text-3xl font-bold px-5 cursor-pointer text-black' onClick={goToMainPage}> Data Visualization Application </h1>
+        </div>
         <div>
           {user.username && (
             <div className='flex'>

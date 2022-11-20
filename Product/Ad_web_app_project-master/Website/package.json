@@ -7,7 +7,7 @@
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test":"npx jest"
+    "test": "jest"
   },
   "author": "Thong Dang",
   "license": "MIT",
@@ -28,6 +28,7 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
-    "jest": "^29.3.1"
+    "jest": "^29.3.1",
+    "supertest": "^6.3.1"
   }
 }
