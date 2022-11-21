@@ -8,7 +8,9 @@ import { Doughnut } from 'react-chartjs-2';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-const options = {
+
+function DoughnutChartOfV9() {
+  const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -18,14 +20,32 @@ const options = {
         display: true,
         text: 'CO2 emissions by sectors (%)',
       },
+      tooltip:
+      { 
+        callbacks: 
+        {
+         afterBody: (context) => 
+         {
+         return Filter(sub_categoryArray)
+         }
+        }
+      }
       
     },
 };
-function DoughnutChartOfV9() {
+   
+
+
+
     let {allDataOfV9, fetchAllDataOfV9} = useContext(ChartContext); 
     useEffect(() => {
         fetchAllDataOfV9();
     },[]);
+
+    let mainSector = allDataOfV9.map((data) => data.sector)
+    let testDataArray = [78.4,18.4,3.2]
+    let sub_categoryArray = []
+
 
     let Filter = (arr) =>
     {
@@ -33,34 +53,25 @@ function DoughnutChartOfV9() {
 
      return result;
     };
-    
-    let mainSector = allDataOfV9.map((data) => data.sector)
-    let Data = allDataOfV9.map((data) => data.Share_of_global_greenhouse_gas_emissions)
 
-    console.log(mainSector)
 
-    //Idea? Do this tomorrow. Change the database so that each sector and sub sector has its own array of numbers
+    for (let i = 0; i < allDataOfV9.length; i++)
+    {
+       var numbers = allDataOfV9[i].sub_sector
+       sub_categoryArray.push(numbers)
+    }
+  console.log(sub_categoryArray)
+
       const data = {
          labels: Filter(mainSector),
           datasets:
               [{
-                  label: "test",
-                  data: Data,
+                  label: "%",
+                  data: testDataArray,
                   borderColor: "rgb(0, 75, 43)",
                   backgroundColor: 'rgba(238, 75, 43)'
-              },
-              {
-                label: "test",
-                data: Data,
-                borderColor: "rgb(0, 75, 43)",
-                backgroundColor: 'rgba(238, 75, 43)'
-            },
-            {
-                label: "test",
-                data: Data,
-                borderColor: "rgb(, 75, 43)",
-                backgroundColor: 'rgba(238, 75, 43)'
-            },
+              }
+           
             ]
             
       }

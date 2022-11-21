@@ -336,7 +336,7 @@ let dataArray =[];
 let colorArray = [];
 
 //Function for random colors, (PS.colors can repeat(fix this if possible?))
-let randomColors = (i,total) => 
+let randomColors = () => 
 {
   let r = Math.floor(Math.random()*255)
   var g = Math.floor(Math.random()*255)

@@ -48,6 +48,17 @@ import {
         },
       plugins: 
      {
+      tooltip:
+      { 
+        callbacks: 
+        {
+         afterBody: (context) => 
+         {
+         return "test"
+         }
+        }
+      },
+
         legend: {
           position: 'top',
         },
