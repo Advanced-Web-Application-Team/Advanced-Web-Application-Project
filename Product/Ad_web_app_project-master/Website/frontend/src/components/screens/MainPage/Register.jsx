@@ -73,6 +73,7 @@ function Register() {
 
       let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       let checkEmail = regex.test(userInputValues.email);
+      
       //Password regex for checking
       const lowercaseRegExp   = /(?=.*?[a-z])/;
       const digitsRegExp      = /(?=.*?[0-9])/;
@@ -90,8 +91,8 @@ function Register() {
           toast.error("Please fill your username. At least 5 characters are required and no more than 12 characters!")
       } else if (userInputValues.email.length === 0 || checkEmail === false) {
           toast.error("Please check your email!");
-      } else if (userInputValues.password.length < 5 || lowerCaseCheck === false || digitCheck === false || specialCharCheck === false || upperCaseCheck === false) {
-          toast.error("Please fill your password. At least 5 characters, at least one Uppercase, at least one LowerCase, at least one digit, and at least one special character are required!");
+      } else if (userInputValues.password.length < 8 || lowerCaseCheck === false || digitCheck === false || specialCharCheck === false || upperCaseCheck === false) {
+          toast.error("Please fill your password. At least 8 characters, at least one Uppercase, at least one LowerCase, at least one digit, and at least one special character are required!");
       } else {
          dispatch(registerFunction(userInputValues));
       }

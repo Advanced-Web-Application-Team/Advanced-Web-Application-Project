@@ -123,7 +123,7 @@ function LineChartOfV3() {
     
   return (
     <div>
-    <div style={{width: '50%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, marginBottom: 10, backgroundColor: "white"}}>
+    <div className="p-10" style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, marginBottom: 10, backgroundColor: "white"}}>
         <Line options={options} data={data} />
 
         <h3 className='text-black font-bold text-2xl my-5 text-center'> Description</h3>
@@ -136,7 +136,9 @@ function LineChartOfV3() {
             <p className='text-left mb-3'> - Ongoing comparisons of independent measurements at the same site allow an estimate of the accuracy, which is generally better than 0.2 ppm. </p>
         
 
-        <p style={{textAlign: "left"}}> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> https://gml.noaa.gov/ccgg/about/co2_measurements.html</p>
+        <p> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> </p>
+        <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" className='underline text-sky-600 font-bold'> Link to C02 measurements datasets (Click to get) </a> 
+        
     </div>
 </div>
   )

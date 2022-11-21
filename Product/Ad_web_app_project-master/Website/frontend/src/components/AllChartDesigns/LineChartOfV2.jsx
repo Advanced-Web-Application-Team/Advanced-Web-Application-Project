@@ -180,7 +180,7 @@ function LineChartOfV2() {
 
   return (
     <div>
-    <div style={{width: '50%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
+    <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, paddingTop: 30, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
         <Line options={options} data={data} />
 
         <h3 className='text-black font-bold text-2xl my-5 text-center'> Description</h3>
@@ -190,10 +190,10 @@ function LineChartOfV2() {
         </p>
 
         <p style={{textAlign: "left"}}> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> 
-        <p> https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt </p> 
-        <p> https://www.metoffice.gov.uk/hadobs/hadcrut5/ </p>
-        <p style={{fontWeight: "bold"}}> Data measurements:</p>
-        <p> https://gml.noaa.gov/ccgg/about/co2_measurements.html</p>
+        <p className='description'> https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt </p> 
+        <p className='description'> https://www.metoffice.gov.uk/hadobs/hadcrut5/ </p>
+        <p className='description' style={{fontWeight: "bold"}}> Data measurements:</p>
+        <p className='description'> https://gml.noaa.gov/ccgg/about/co2_measurements.html</p>
         </p>
     </div>
 </div>

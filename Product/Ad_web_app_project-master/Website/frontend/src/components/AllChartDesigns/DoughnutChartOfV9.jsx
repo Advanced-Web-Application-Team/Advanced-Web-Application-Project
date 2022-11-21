@@ -82,7 +82,9 @@ We see that, globally, agriculture is the largest contributor to methane emissio
             
             </p>
             <span></span>
+
             <p style={{textAlign: "left", paddingTop: "20px",}}> <span style={{fontWeight: "bold"}}> Link to data source:</span> https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx </p>
+
         </div>
     </div>
   )

@@ -10,9 +10,12 @@ import Navbar from "./components/screens/UI components/Navbar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
+import { LayoutForDesignPageProvider } from './context/LayoutForDesignPage';
+import LayoutDesignForUser from './components/screens/MainPage/LayoutDesignForUser';
 import ProtectedScreen from './components/screens/ProtectScreen/ProtectedScreen';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LogIn from './components/screens/MainPage/LogIn';
+import { TotalChartsProvider } from './context/LayoutContext';
 import Register from './components/screens/MainPage/Register';
 import LineChartOfV2 from './components/AllChartDesigns/LineChartOfV2';
 import LineChartOfV3 from './components/AllChartDesigns/LineChartOfV3';
@@ -23,6 +26,7 @@ import LineChartOfV7 from './components/AllChartDesigns/LineChartOfV7';
 import LineChartOfV8 from './components/AllChartDesigns/LineChartOfV8';
 import DoughnutChartOfV9 from './components/AllChartDesigns/DoughnutChartOfV9';
 import { LineChartProvider } from './context/LineChartContext';
+
 
 
 let arrayScreen = [];
@@ -55,23 +59,37 @@ function App() {
     <>
     <Provider store={store}>
     <LineChartProvider>
+      <TotalChartsProvider>
+        <LayoutForDesignPageProvider>
       <Router>
       <Header openModal={openModal} />
       <Navbar closeModal={closeModal} navbarOpen={navbarIsOpen}/>
 
       <div className="">
       <Routes>
+
+          {/* Main page for Athmospheric co2 and temperatures charts */}
           <Route exact path="/" element={
           <DisplayCharts arrayScreen={arrayScreen}/>
           }/>
           
+          {/* Log in page */}
           <Route path="/login" element={<LogIn />}/>
+
+          {/* Register page */}
           <Route path="/register" element={<Register />}/>
+
+          {/* Page for user */}
           <Route path="/userprofile" element={<ProtectedScreen />}>
           <Route path="/userprofile" element={<UserProfilePage />}/>
           </Route>
-          { /*<Route path="/layoutdesign" element={<LayoutsForChart />} />
-          <Route path="/publiclayout" element={<UserView />}/> */}
+
+          {/* Page for users to design layouts (must log in successfully) */}
+          <Route path="/layoutdesign" element={<ProtectedScreen />}>
+            <Route path="/layoutdesign" element={<LayoutDesignForUser />}/>
+          </Route>
+
+          {/* Page for emission sources charts */}
           <Route path ="/emission" element={<SecondPage />}/>
       </Routes>
       </div>
@@ -82,6 +100,8 @@ function App() {
       </Router>
 
       <ToastContainer />
+      </LayoutForDesignPageProvider>
+      </TotalChartsProvider>
     </LineChartProvider>
     </Provider>
     </>

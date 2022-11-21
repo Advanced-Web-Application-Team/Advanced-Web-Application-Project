@@ -29,4 +29,8 @@ code {
   transform: translateX(0);
 }
 
+.description {
+  width: -moz-fit-content;
+  width: fit-content;
+}
 
