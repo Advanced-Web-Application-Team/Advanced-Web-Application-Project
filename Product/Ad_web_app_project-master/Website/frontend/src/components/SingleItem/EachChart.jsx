@@ -46,7 +46,7 @@ function EachChart({id, singleItem}) {
             </div>
 
             <div className='flex items-center justify-center my-5'>
-              {chartExists === false
+              {user.username && chartExists === false
               
               &&
               
@@ -56,7 +56,7 @@ function EachChart({id, singleItem}) {
               )
             }
 
-            {chartExists === true ?
+            {user.username && chartExists === true ?
         
 
               (
