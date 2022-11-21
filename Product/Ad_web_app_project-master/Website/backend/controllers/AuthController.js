@@ -1,10 +1,11 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
-const jwt = require("jsonwebtoken");
+//const jwt = require("jsonwebtoken");
 const validatePassword = require("./validatePassword");
 const validateEmail = require("./validateEmail");
 const validateUsername = require("./validateUsername");
+const getToken = require("./getToken");
 
 module.exports = {
   authRegister: asyncHandler(async (req, res) => {
@@ -95,8 +96,3 @@ module.exports = {
   }),
 };
 
-function getToken(id) {
-  return jwt.sign({ id: id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
-}
