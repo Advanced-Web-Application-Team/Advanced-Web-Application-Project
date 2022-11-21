@@ -43,6 +43,7 @@ const V5 = require('./models/V5model');
 const V6 = require("./models/V6model");
 const V7 = require("./models/V7model");
 const V8 = require("./models/V8model");
+const V9 = require("./models/V9model");
 
 //Port defined
 const PORT = process.env.PORT || 8000;
@@ -266,7 +267,7 @@ app.use(errorHandler);
 
 //Upload V8 data
 
-app.post("/", upload.single("file"), async (req, res, next) => {
+/*app.post("/", upload.single("file"), async (req, res, next) => {
   csv()
     .fromFile(req.file.path)
       .then(async (jsonObj) => {
@@ -515,211 +516,34 @@ app.post("/", upload.single("file"), async (req, res, next) => {
        }) 
     
    
-  });
+  });*/
 
+//Upload V9 data
 
-
-// Upload monthly North-Hemisphere data
-
-// app.post("/", upload.single("file"), (req, res, next) => {
-//     csv()
-//     .fromFile(req.file.path)
-//     .then(async (jsonObj) => {
-//         let newArray = [];
-//         jsonObj.forEach(async (obj) => {
-//             let newObj = {};
-//             let year = parseInt(obj.Time.split("-")[0]);
-//             let month = obj.Time.split("-")[1];
-
-//             if (month.charAt(0) === "0") {
-//                 month = month.charAt(1);
-//             }
-
-//             let monthNumber = parseInt(month);
-
-//             newObj.name = "North_Hemis";
-//             newObj.year = year;
-//             newObj.month = monthNumber;
-//             newObj.period = "monthly"
-//             newObj.anomaly = parseFloat(obj['Anomaly (deg C)']);
-//             newObj.chartNumber = "v1";
-            
-       
-//             newArray.push(newObj);
-//         });
+/*app.post("/", upload.single("file"), async (req, res, next) => {
+    csv()
+   .fromFile(req.file.path)
+     .then(async (jsonObj) => {
         
-//             await V1.insertMany(newArray);
-        
-//     }) 
+        let newArray = [];
 
-//     res.status(200).json({message: "Success"});
-// });
+        jsonObj.forEach((obj) => {
+          
 
+            newArray.push(newObj);
+        });
 
-
-//Upload month Global data
-
-// app.post("/", upload.single("file"), (req, res, next) => {
-//     csv()
-//     .fromFile(req.file.path)
-//     .then(async (jsonObj) => {
-//         let newArray = [];
-//         jsonObj.forEach(async (obj) => {
-//             let newObj = {};
-//             let year = parseInt(obj.Time.split("-")[0]);
-//             let month = obj.Time.split("-")[1];
-
-//             if (month.charAt(0) === "0") {
-//                 month = month.charAt(1);
-//             }
-
-//             let monthNumber = parseInt(month);
-
-//             newObj.name = "Global";
-//             newObj.year = year;
-//             newObj.month = monthNumber;
-//             newObj.period = "monthly"
-//             newObj.anomaly = parseFloat(obj['Anomaly (deg C)']);
-//             newObj.chartNumber = "v1";
-            
-       
-//             newArray.push(newObj);
-//         });
-        
-//             await V1.insertMany(newArray);
-        
-//     }) 
-
-//     res.status(200).json({message: "Success"});
-// });
-
-
-//Upload month South-Hemisphere data
-// app.post("/", upload.single("file"), (req, res, next) => {
-//     csv()
-//     .fromFile(req.file.path)
-//     .then(async (jsonObj) => {
-//         let newArray = [];
-//         jsonObj.forEach(async (obj) => {
-//             let newObj = {};
-//             let year = parseInt(obj.Time.split("-")[0]);
-//             let month = obj.Time.split("-")[1];
-
-//             if (month.charAt(0) === "0") {
-//                 month = month.charAt(1);
-//             }
-
-//             let monthNumber = parseInt(month);
-
-//             newObj.name = "South_Hemis";
-//             newObj.year = year;
-//             newObj.month = monthNumber;
-//             newObj.period = "monthly"
-//             newObj.anomaly = parseFloat(obj['Anomaly (deg C)']);
-//             newObj.chartNumber = "v1";
-            
-       
-//             newArray.push(newObj);
-//         });
-        
-//             await V1.insertMany(newArray);
-        
-//     }) 
-
-//     res.status(200).json({message: "Success"});
-// });
-
-//Upload annual Global data
-
-// app.post("/", upload.single("file"), (req, res, next) => {
-//     csv()
-//     .fromFile(req.file.path)
-//     .then(async (jsonObj) => {
-//         let newArray = [];
-//         jsonObj.forEach(async (obj) => {
-//             let newObj = {};
-
-            
-//             let year = parseInt(obj.Time);
-//             newObj.name = "Global";
-//             newObj.year = year;
-//             newObj.period = "annual"
-//             newObj.anomaly = parseFloat(obj['Anomaly (deg C)']);
-//             newObj.chartNumber = "v1";
-            
-       
-//             newArray.push(newObj);
-//         });
+        await V9.insertMany(newArray);
+    
 
         
-        
-//             await V1.insertMany(newArray);
-        
-//     }) 
+      }) 
+    
+   
+ });*/
 
-//     res.status(200).json({message: "Success"});
-// });
 
-//Upload annual North_Hemis data
-// app.post("/", upload.single("file"), (req, res, next) => {
-//     csv()
-//     .fromFile(req.file.path)
-//     .then(async (jsonObj) => {
-//         let newArray = [];
-//         jsonObj.forEach(async (obj) => {
-//             let newObj = {};
 
-            
-//             let year = parseInt(obj.Time);
-//             newObj.name = "North_Hemis";
-//             newObj.year = year;
-//             newObj.period = "annual"
-//             newObj.anomaly = parseFloat(obj['Anomaly (deg C)']);
-//             newObj.chartNumber = "v1";
-            
-       
-//             newArray.push(newObj);
-//         });
-
-        
-        
-//             await V1.insertMany(newArray);
-        
-//     }) 
-
-//     res.status(200).json({message: "Success"});
-// });
-
-// Upload annual South_Hemis data
-
-// app.post("/", upload.single("file"), (req, res, next) => {
-//     csv()
-//     .fromFile(req.file.path)
-//     .then(async (jsonObj) => {
-//         let newArray = [];
-//         jsonObj.forEach(async (obj) => {
-//             let newObj = {};
-
-            
-//             let year = parseInt(obj.Time);
-//             newObj.name = "South_Hemis";
-//             newObj.year = year;
-//             newObj.period = "annual"
-//             newObj.anomaly = parseFloat(obj['Anomaly (deg C)']);
-//             newObj.chartNumber = "v1";
-            
-       
-//             newArray.push(newObj);
-//         });
-
-        
-        
-//             await V1.insertMany(newArray);
-        
-//     }) 
-
-//     res.status(200).json({message: "Success"});
-// });
 
 
 // Port set up
