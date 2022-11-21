@@ -22,9 +22,11 @@ arrayScreen.push({id: "v5", item: <LineChartOfV5 />});
 arrayScreen.push({id: "v6", item: <LineChartOfV6 />});
 arrayScreen.push({id: "v7", item: <LineChartOfV7 />});
 
+
 //Page to display charts of Atmospheric C02 & temperatures
 function DisplayCharts({}) {
-  console.log(arrayScreen);
+
+  
   return (
     <div className="bg-stone-300 p-5">
         {arrayScreen.map((item) => (

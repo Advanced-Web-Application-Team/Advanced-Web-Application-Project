@@ -109,7 +109,7 @@ function LineChartOfV5() {
 
   return (
     <div>
-        <div style={{width: '50%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, marginBottom: 10, backgroundColor: "white"}}>
+        <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, marginBottom: 10, backgroundColor: "white"}}>
             <Line options={options}  data={data} />
 
             <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { logoutFunction } from '../../../store/actions/AuthActions';
+
+import { removeAll } from '../../../store/actions/LayoutActions';
 //Set main page
 function Header({openModal}) {
     //Set dispatch
@@ -27,6 +29,7 @@ function Header({openModal}) {
 
     const handleLogout = () => {
       dispatch(logoutFunction());
+      dispatch(removeAll());
       navigate("/login");
   }
 
@@ -40,12 +43,12 @@ function Header({openModal}) {
     let {user} = useSelector(state => state.auth);
 
   return (
-    <div className='bg-purple-200 p-5'>
+    <div className='bg-gray-600 p-5'>
         
         <div className='container mx-auto flex items-center justify-between'>
         <div className='flex items-center justify-center '>
-        <GiHamburgerMenu className='inline-block left-5 top-6 cursor-pointer' size={30} onClick={handleClick}/>
-        <h1 className='text-center text-3xl font-bold px-5 cursor-pointer text-black' onClick={goToMainPage}> Data Visualization Application </h1>
+        <GiHamburgerMenu className='inline-block left-5 top-6 cursor-pointer' size={30} onClick={handleClick} color={"white"}/>
+        <h1 className='text-center text-3xl font-bold px-5 cursor-pointer text-slate-200' onClick={goToMainPage}> Data Visualization Application </h1>
         </div>
         <div>
           {user.username && (

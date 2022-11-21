@@ -46,7 +46,7 @@ function DoughnutChartOfV9() {
             
             </p>
             <span></span>
-            <p style={{textAlign: "left", paddingTop: "20px",}}> <span style={{fontWeight: "bold"}}> Link to data source:</span> https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat </p>
+            <p style={{textAlign: "left", padding: "20px",}}> <span style={{fontWeight: "bold"}}> Link to data source:</span> https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat </p>
         </div>
     </div>
   )
