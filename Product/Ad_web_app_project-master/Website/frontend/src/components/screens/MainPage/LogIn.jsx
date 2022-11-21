@@ -96,7 +96,7 @@ function LogIn() {
               value={userInputs.username}
               
               className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-              placeholder="Enter your username"
+              placeholder="Enter your email"
             />
           </div>
           <div className="flex flex-col mt-4">
