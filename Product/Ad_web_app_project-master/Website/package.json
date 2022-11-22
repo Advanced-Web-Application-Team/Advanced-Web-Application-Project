@@ -15,7 +15,7 @@
     "bcrypt": "^5.1.0",
     "chartjs-adapter-date-fns": "^2.0.0",
     "colors": "^1.4.0",
-    "concurrently": "^7.5.0",
+    "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "csvtojson": "^2.0.10",
     "date-fns": "^2.29.3",

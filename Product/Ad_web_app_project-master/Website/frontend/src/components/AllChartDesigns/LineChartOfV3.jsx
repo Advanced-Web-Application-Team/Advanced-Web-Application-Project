@@ -84,19 +84,21 @@ function LineChartOfV3() {
 
     let {allDataOfV3, fetchAllDataOfV3} = useContext(LineChartContext);
 
-    let yearArray = allDataOfV3.map((data) => data.year);
+    let yearArray = allDataOfV3.map((data) => data.Time);
+
     let distinctYearArray = yearArray.filter((a, b) => yearArray.indexOf(a) === b);
 
     let monthlyAverageArray = allDataOfV3.map((data) => ({
-        x: data.year,
-        y: data.monthly_average
+        x: data.Time,
+        y: data.co2_monthly_avg
     }));
 
     let annualAverageArray = allDataOfV3.map((data) => ({
-        x: data.year,
-        y: data.annual_average
+        x: data.Time,
+        y: data.co2_annual_avg  
     }));
 
+   
    
     useEffect(() => {
         fetchAllDataOfV3();
