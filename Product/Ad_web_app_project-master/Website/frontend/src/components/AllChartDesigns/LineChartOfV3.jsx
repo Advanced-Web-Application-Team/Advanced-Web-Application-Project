@@ -98,6 +98,7 @@ function LineChartOfV3() {
     }));
 
    
+   
     useEffect(() => {
         fetchAllDataOfV3();
     },[]);
