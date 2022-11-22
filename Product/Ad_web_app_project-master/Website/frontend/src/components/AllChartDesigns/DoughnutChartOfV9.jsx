@@ -172,7 +172,7 @@ function DoughnutChartOfV9() {
 
   return (
     <div>
-        <div style={{width: '60%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
+        <div style={{width: '80%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
             <Doughnut options={options} data={data} />
             <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>
             <p style={{textAlign: "left", color: 'black', marginBottom: 5}}> 
