@@ -24,12 +24,7 @@ function DoughnutChartOfV9() {
       { 
         callbacks: 
         {
-         footer: (context) => 
-         {
-          console.log(context);
-    
-         return Filter(sub_categoryArray)   
-         },
+         
          afterFooter: (context) => 
          {
           // return Filter(sub_sub_categoryArray)
@@ -56,6 +51,7 @@ function DoughnutChartOfV9() {
     //Energy total greenhouse gas submissions
     let energyTotal = allDataOfV9.filter(x => x.sector === "Energy").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
     
+    let industryTotal = allDataOfV9.filter(x => x.sector === "Industry ").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
     //Agriculture, Forestry & Land Use total greenhouse gas submissions
     let agricultureTotal = parseFloat(allDataOfV9.filter(x => x.sector === "Agriculture, Forestry & Land Use").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0).toFixed(1));
 
@@ -113,10 +109,10 @@ function DoughnutChartOfV9() {
           totalSummation += value.gas_emission_value;
         });
   
-        text += `${getName}` + ": " + `${totalSummation.toFixed(1)}` + " (the main sub-sector) " + "\n";
+        text += `${getName}` + ": " + `${totalSummation.toFixed(1)}` + "%"+" (the main sub-sector) " + "\n";
   
         item[getName].forEach((value) => {
-          text += `${value.sub_sub_sector}` + ": " + `${value.gas_emission_value}` + "\n";
+          text += `${value.sub_sub_sector}` + ": " + `${value.gas_emission_value}` +"%"+ "\n";
         });
   
         text += `\n`;
@@ -126,12 +122,9 @@ function DoughnutChartOfV9() {
       return text;
     };
     
-    let testDataArray = [energyTotal, agricultureTotal, wasteTotal];
-    // let testDataArray = [78.4,18.4,3.2];
-    let sub_categoryArray = [];
-    let sub_sub_categoryArray = [];
-    let numberArray = [];
-
+    let testDataArray = [energyTotal,industryTotal, agricultureTotal, wasteTotal];
+ 
+  
     let Filter = (arr) =>
     {
      let result = arr.filter((element, i) => arr.indexOf(element) === i)
@@ -140,24 +133,15 @@ function DoughnutChartOfV9() {
     };
 
   
-    // for (let i = 0; i < allDataOfV9.length; i++)
-    // {
-    //    let subSectors = allDataOfV9[i].sub_sector
-    //    let sub_sub_sector = allDataOfV9[i].sub_sub_sector
-    //    let numbers = allDataOfV9[i].Share_of_global_greenhouse_gas_emissions
-
-    //    sub_categoryArray.push(subSectors)
-    //    numberArray.push(numbers +"%")
-    //    sub_sub_categoryArray.push(sub_sub_sector)
-    // }
+  
       const data = {
          labels: Filter(mainSector),
           datasets:
               [{
-                  label: "",
+                  label: "%",
                   data: testDataArray,
                   borderColor: "rgb(0, 0, 0)",
-                  backgroundColor: ["rgb(255,255,0)","rgb(0,100,0)","rgb(139,69,19)"]
+                  backgroundColor: ["rgb(255,255,0)","rgb(169,169,169)","rgb(0,100,0)","rgb(139,69,19)"]
               }
             
            
