@@ -32,7 +32,9 @@ function DoughnutChartOfV9() {
          },
          afterFooter: (context) => 
          {
-          return Filter(sub_sub_categoryArray)
+          // return Filter(sub_sub_categoryArray)
+         
+          return subSectorTextReturn(context[0].label);
          }
         }
       }
@@ -49,7 +51,83 @@ function DoughnutChartOfV9() {
     },[]);
 
     let mainSector = allDataOfV9.map((data) => data.sector);
-    let testDataArray = [78.4,18.4,3.2];
+
+
+    //Energy total greenhouse gas submissions
+    let energyTotal = allDataOfV9.filter(x => x.sector === "Energy").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
+    
+    //Agriculture, Forestry & Land Use total greenhouse gas submissions
+    let agricultureTotal = parseFloat(allDataOfV9.filter(x => x.sector === "Agriculture, Forestry & Land Use").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0).toFixed(1));
+
+    //Waste total greenhouse gas submissions
+
+    let wasteTotal = allDataOfV9.filter(x => x.sector === "Waste").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
+  
+     // Function to return text for afterBody of each sector in a graph
+     const subSectorTextReturn = (label) => {
+      
+      let energyNames = allDataOfV9.filter(x => x.sector === label).map((value) => ({
+        sub_sector: value.sub_sector,
+        sub_sub_sector: value.sub_sub_sector,
+        gas_emission_value: value.Share_of_global_greenhouse_gas_emissions 
+      }));
+  
+      let totalForEachSector = energyNames.map(x => x.sub_sector);
+  
+      let removeDuplicates = totalForEachSector.filter((a, b) => totalForEachSector.indexOf(a) == b);
+  
+  
+      let arrayOfNewObjects = [];
+      removeDuplicates.forEach((data) => {
+  
+        let newObj = {};
+  
+  
+        let filterEachSubSector = allDataOfV9.filter((value) => value.sub_sector === data);
+  
+    
+  
+        let mappedDataForSubSector = filterEachSubSector.map((data) => ({
+            sub_sub_sector: data.sub_sub_sector,
+            gas_emission_value: data.Share_of_global_greenhouse_gas_emissions
+        }));
+  
+        newObj[data] = mappedDataForSubSector
+  
+        arrayOfNewObjects.push(newObj);
+  
+      
+      });
+  
+      let text = "";
+  
+      arrayOfNewObjects.forEach((item) => {
+        
+        let getKeys = Object.keys(item);
+  
+        let getName = getKeys[0];
+  
+        let totalSummation = 0;
+  
+        item[getName].forEach((value) => {
+          totalSummation += value.gas_emission_value;
+        });
+  
+        text += `${getName}` + ": " + `${totalSummation.toFixed(1)}` + " (the main sub-sector) " + "\n";
+  
+        item[getName].forEach((value) => {
+          text += `${value.sub_sub_sector}` + ": " + `${value.gas_emission_value}` + "\n";
+        });
+  
+        text += `\n`;
+  
+      });
+
+      return text;
+    };
+    
+    let testDataArray = [energyTotal, agricultureTotal, wasteTotal];
+    // let testDataArray = [78.4,18.4,3.2];
     let sub_categoryArray = [];
     let sub_sub_categoryArray = [];
     let numberArray = [];
@@ -62,16 +140,16 @@ function DoughnutChartOfV9() {
     };
 
   
-    for (let i = 0; i < allDataOfV9.length; i++)
-    {
-       let subSectors = allDataOfV9[i].sub_sector
-       let sub_sub_sector = allDataOfV9[i].sub_sub_sector
-       let numbers = allDataOfV9[i].Share_of_global_greenhouse_gas_emissions
+    // for (let i = 0; i < allDataOfV9.length; i++)
+    // {
+    //    let subSectors = allDataOfV9[i].sub_sector
+    //    let sub_sub_sector = allDataOfV9[i].sub_sub_sector
+    //    let numbers = allDataOfV9[i].Share_of_global_greenhouse_gas_emissions
 
-       sub_categoryArray.push(subSectors)
-       numberArray.push(numbers +"%")
-       sub_sub_categoryArray.push(sub_sub_sector)
-    }
+    //    sub_categoryArray.push(subSectors)
+    //    numberArray.push(numbers +"%")
+    //    sub_sub_categoryArray.push(sub_sub_sector)
+    // }
       const data = {
          labels: Filter(mainSector),
           datasets:
