@@ -2,10 +2,9 @@
 const mongoose = require("mongoose");
 
 const V3Schema = new mongoose.Schema({
-    month: Number,
-    year: Number,
-    monthly_average: Number, 
-    annual_average: Number,
+    Time: Number,
+    co2_monthly_avg: Number, 
+    co2_annual_avg: Number,
     chartNumber: String
 });
 

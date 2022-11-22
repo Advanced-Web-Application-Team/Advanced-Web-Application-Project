@@ -24,9 +24,13 @@ function DoughnutChartOfV9() {
       { 
         callbacks: 
         {
-         afterBody: (context) => 
+         footer: (context) => 
          {
-         return Filter(sub_categoryArray)
+         return Filter(sub_categoryArray)   
+         },
+         afterFooter: (context) => 
+         {
+          return Filter(sub_sub_categoryArray)
          }
         }
       }
@@ -42,10 +46,11 @@ function DoughnutChartOfV9() {
         fetchAllDataOfV9();
     },[]);
 
-    let mainSector = allDataOfV9.map((data) => data.sector)
-    let testDataArray = [78.4,18.4,3.2]
-    let sub_categoryArray = []
-
+    let mainSector = allDataOfV9.map((data) => data.sector);
+    let testDataArray = [78.4,18.4,3.2];
+    let sub_categoryArray = [];
+    let sub_sub_categoryArray = [];
+    let numberArray = [];
 
     let Filter = (arr) =>
     {
@@ -57,20 +62,25 @@ function DoughnutChartOfV9() {
 
     for (let i = 0; i < allDataOfV9.length; i++)
     {
-       var numbers = allDataOfV9[i].sub_sector
-       sub_categoryArray.push(numbers)
+       let subSectors = allDataOfV9[i].sub_sector
+       let sub_sub_sector = allDataOfV9[i].sub_sub_sector
+       let numbers = allDataOfV9[i].Share_of_global_greenhouse_gas_emissions
+
+       sub_categoryArray.push(subSectors)
+       numberArray.push(numbers +"%")
+       sub_sub_categoryArray.push(sub_sub_sector)
     }
-  console.log(sub_categoryArray)
 
       const data = {
          labels: Filter(mainSector),
           datasets:
               [{
-                  label: "%",
+                  label: "",
                   data: testDataArray,
-                  borderColor: "rgb(0, 75, 43)",
-                  backgroundColor: 'rgba(238, 75, 43)'
+                  borderColor: "rgb(0, 0, 0)",
+                  backgroundColor: ["rgb(255,255,0)","rgb(0,100,0)","rgb(139,69,19)"]
               }
+            
            
             ]
             
