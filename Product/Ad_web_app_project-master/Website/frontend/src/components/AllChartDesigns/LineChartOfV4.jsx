@@ -99,6 +99,7 @@ function LineChartOfV4() {
     let yearArray = allDataOfV4.map((data) => data.year);
     let distinctYearArray = yearArray.filter((a, b) => yearArray.indexOf(a) === b);
    
+   
     let co2_annually = allDataOfV4.map((data) => ({
         x: data.year,
         y: data.co2_annually
@@ -116,7 +117,7 @@ function LineChartOfV4() {
 
     let dss_mixing_ratio = allDataOfV4.map((data) => ({
         x: data.year,
-        y: data.dss_co2_mixing_ratio
+        y: data.dss_co2_mixing_ratio,
     }));
     
     const data = {

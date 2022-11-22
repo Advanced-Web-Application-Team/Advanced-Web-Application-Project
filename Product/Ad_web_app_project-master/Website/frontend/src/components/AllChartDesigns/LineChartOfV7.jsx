@@ -28,87 +28,88 @@ import {
       zoomPlugin,
     );
   
-  const options = {
-      responsive: true,
-      interaction: {mode: 'index', intersect:false},
-      stacked:false,
-      options: 
-       {
-          transitions: 
-          {
-            zoom: 
-            {
-              animation: 
-              {
-                duration: 1000,
-                easing: 'easeOutCubic'
-              }
-            }
-          },
-        },
-      plugins: 
-     {
-      tooltip:
-      { 
-        callbacks: 
-        {
-         afterBody: (context) => 
-         {
-         return "test"
-         }
-        }
-      },
-
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Evolution of global temperature over the past two million years (1 equals 1 thousand years) (https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf)',
-        },
-        subtitle: {
-          display: true,
-          text: 'Custom Chart Subtitle'
-        },
-        zoom: {
-          zoom: {
-            wheel: {
-              enabled: true // SET SCROll ZOOM TO TRUE
-            },
-            speed: 100
-          },
-          pan: {
-            enabled: true,
-            speed: 100
-          }
-        },
-        
-      },
-
-      scales: {
-        A: {
-          type: 'linear',
-          position: 'left',
-      },
-      B: {
-          type: 'linear',
-          position: 'right',
-          grid: {
-            drawOnChartArea: false,
-          },
-         }
-      },
-  };
+ 
   
 
 function LineChartOfV7() {
+  const options = {
+    responsive: true,
+    interaction: {mode: 'index', intersect:false},
+    stacked:false,
+    options: 
+     {
+        transitions: 
+        {
+          zoom: 
+          {
+            animation: 
+            {
+              duration: 1000,
+              easing: 'easeOutCubic'
+            }
+          }
+        },
+      },
+    plugins: 
+   {
+    tooltip:
+    { 
+      callbacks: 
+      {
+       afterBody: (context) => 
+       {
+       return testarray
+       }
+      }
+    },
+
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Evolution of global temperature over the past two million years (1 equals 1 thousand years) (https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf)',
+      },
+      subtitle: {
+        display: true,
+        text: 'Custom Chart Subtitle'
+      },
+      zoom: {
+        zoom: {
+          wheel: {
+            enabled: true // SET SCROll ZOOM TO TRUE
+          },
+          speed: 100
+        },
+        pan: {
+          enabled: true,
+          speed: 100
+        }
+      },
+      
+    },
+
+    scales: {
+      A: {
+        type: 'linear',
+        position: 'left',
+    },
+    B: {
+        type: 'linear',
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
+       }
+    },
+};
 
     let {allDataOfV7,  fetchAllDataOfV7} = useContext(LineChartContext);
 
     useEffect(() => {
         fetchAllDataOfV7();
     },[]);
-
+    let testarray = [];
     let yearLabels = allDataOfV7.map((value) => value.time);
 
     let carbonValue = allDataOfV7.map((value) => ({
@@ -120,6 +121,15 @@ function LineChartOfV7() {
       y: value.surface_temp,
   }));
 
+
+for (let i = 0; i < allDataOfV7.length; i++)
+{
+let test = allDataOfV7[i].Event
+
+testarray.push(test)
+}
+
+
 //Make it so that it will show later
 let Events = allDataOfV7.map((value) => 
 ({
@@ -127,7 +137,6 @@ let Events = allDataOfV7.map((value) =>
     y: value.Event,
 }));
 
-console.log(Events)
     const data = {
         labels: yearLabels,
         datasets: [

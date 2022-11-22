@@ -26,6 +26,8 @@ function DoughnutChartOfV9() {
         {
          footer: (context) => 
          {
+          console.log(context);
+    
          return Filter(sub_categoryArray)   
          },
          afterFooter: (context) => 
@@ -59,7 +61,7 @@ function DoughnutChartOfV9() {
      return result;
     };
 
-
+  
     for (let i = 0; i < allDataOfV9.length; i++)
     {
        let subSectors = allDataOfV9[i].sub_sector
@@ -70,7 +72,6 @@ function DoughnutChartOfV9() {
        numberArray.push(numbers +"%")
        sub_sub_categoryArray.push(sub_sub_sector)
     }
-
       const data = {
          labels: Filter(mainSector),
           datasets:
