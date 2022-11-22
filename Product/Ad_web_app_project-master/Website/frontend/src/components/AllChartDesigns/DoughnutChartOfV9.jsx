@@ -26,9 +26,9 @@ function DoughnutChartOfV9() {
         {
          footer: (context) => 
          {
-          console.log(context);
+          
     
-         return Filter(sub_categoryArray)   
+         return Filter(sub_categoryArray) 
          },
          afterFooter: (context) => 
          {
