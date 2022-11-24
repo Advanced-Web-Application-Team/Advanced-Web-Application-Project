@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
+import { useState } from 'react';
 import { useRef } from 'react';
 import ChartContext from '../../context/LineChartContext';
 import 'chartjs-adapter-date-fns';
@@ -10,9 +11,23 @@ import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+
+
+
 function DoughnutChartOfV9() {
+
+  let [showHidden, setShowHidden] = useState(true);
+  let [getNumber, setGetNumber] = useState();
+
+
+
+
   const options = {
     responsive: true,
+    onClick: (evt, element) => {
+      setShowHidden(!showHidden);
+      setGetNumber(element[0].index);
+    },
     plugins: {
       legend: 
       {
@@ -30,7 +45,9 @@ function DoughnutChartOfV9() {
       { 
         callbacks: 
         {
-         
+         afterBody: (context) => {
+            return "new text";
+         },
          afterFooter: (context) => 
          {
           // return Filter(sub_sub_categoryArray)
@@ -151,6 +168,132 @@ function DoughnutChartOfV9() {
      return result;
     };
 
+     // Get Array Values of C02 by each sector 
+     const getValuesOfSubSector = (id) => {
+
+      let getSectorName = "";
+
+      switch (id) {
+        case 0:
+          getSectorName = "Energy";
+          break;
+        case 1: 
+          getSectorName = "Industry ";
+          break;
+        case 2:
+          getSectorName = "Agriculture, Forestry & Land Use";
+          break;
+        case 3:
+          getSectorName = "Waste"
+          break;
+        default:
+          break;
+      }
+
+      let arrayOfEachSectorName = allDataOfV9.filter(x => x.sector === getSectorName).map(x => x.sub_sector);
+      let removeDuplicate = arrayOfEachSectorName.filter((a, b) => arrayOfEachSectorName.indexOf(a) === b);
+
+      let arrayOfValues = [];
+
+      removeDuplicate.forEach((name) => {
+
+          let allValuesOfEachSector = allDataOfV9.filter(x => x.sector === getSectorName).filter(x => x.sub_sector === name).map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0).toFixed(1);
+
+          arrayOfValues.push(parseFloat(allValuesOfEachSector));
+
+      });
+
+     
+      return arrayOfValues;
+  };
+
+  //Get Array Values of each sub-sub sector
+
+  const getValuesOfSubSubSector = (id) => {
+    let getSectorName = "";
+
+    switch (id) {
+      case 0:
+        getSectorName = "Energy";
+        break;
+      case 1: 
+        getSectorName = "Industry ";
+        break;
+      case 2:
+        getSectorName = "Agriculture, Forestry & Land Use";
+        break;
+      case 3:
+        getSectorName = "Waste"
+        break;
+      default:
+        break;
+    };
+
+    let arrayValues = allDataOfV9.filter(x => x.sector === getSectorName).map(x => x.Share_of_global_greenhouse_gas_emissions);
+   
+    return arrayValues;
+  };
+
+  //Get Array Labels by each sub-sub sector
+
+  const getLabelsOfSubSubSector = (id) => {
+    let getSectorName = "";
+
+    switch (id) {
+      case 0:
+        getSectorName = "Energy";
+        break;
+      case 1: 
+        getSectorName = "Industry ";
+        break;
+      case 2:
+        getSectorName = "Agriculture, Forestry & Land Use";
+        break;
+      case 3:
+        getSectorName = "Waste"
+        break;
+      default:
+        break;
+    };
+
+    let arrayLabels = allDataOfV9.filter(x => x.sector === getSectorName).map(x => x.sub_sub_sector);
+
+    return arrayLabels;
+
+  };
+  
+
+   //Get Array Labels by each sub sector
+
+   const getLabelsOfSubSector = (id) => {
+
+    let getSectorName = "";
+
+    switch (id) {
+      case 0:
+        getSectorName = "Energy";
+        break;
+      case 1: 
+        getSectorName = "Industry ";
+        break;
+      case 2:
+        getSectorName = "Agriculture, Forestry & Land Use";
+        break;
+      case 3:
+        getSectorName = "Waste"
+        break;
+      default:
+        break;
+    }
+
+    let arrayOfEachSectorName = allDataOfV9.filter(x => x.sector === getSectorName).map(x => x.sub_sector);
+    let removeDuplicate = arrayOfEachSectorName.filter((a, b) => arrayOfEachSectorName.indexOf(a) === b);
+
+  
+    return removeDuplicate;
+  };
+
+
   
   
       const data = {
@@ -163,19 +306,19 @@ function DoughnutChartOfV9() {
                   labels: Filter(mainSector),
               },
               {
-                data: testArray,
+                data: getValuesOfSubSector(getNumber),
                 borderColor: "rgb(0, 0, 0)",
                 backgroundColor: ["rgb(255,255,0)","rgb(169,169,169)","rgb(0,100,0)","rgb(139,69,19)"],
-                labels: ["test","test","test","test","test","test"],
-                hidden:true,
+                labels: getLabelsOfSubSector(getNumber),
+                hidden: showHidden,
             },
             {
               label: "SubSubSector",
-              data: testArray,
+              data: getValuesOfSubSubSector(getNumber),
               borderColor: "rgb(0, 0, 0)",
               backgroundColor: ["rgb(255,255,0)","rgb(169,169,169)","rgb(0,100,0)","rgb(139,69,19)"],
-              labels:["test","test","test","test","test","test"],
-              hidden:true,
+              labels: getLabelsOfSubSubSector(getNumber),
+              hidden: showHidden,
           },
 
             
