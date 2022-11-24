@@ -148,8 +148,7 @@ function LineChartOfV4() {
                 backgroundColor: 'rgba(0,0,139)'
             },
         ]
-    }
- console.log(data)
+    };
 
   return (
     <div>

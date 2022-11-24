@@ -58,7 +58,7 @@ function LineChartOfV7() {
       {
        afterBody: (context) => 
        {
-       return testarray
+       return;
        }
       }
     },
@@ -121,13 +121,6 @@ function LineChartOfV7() {
       y: value.surface_temp,
   }));
 
-
-for (let i = 0; i < allDataOfV7.length; i++)
-{
-let test = allDataOfV7[i].Event
-
-testarray.push(test)
-}
 
 
 //Make it so that it will show later

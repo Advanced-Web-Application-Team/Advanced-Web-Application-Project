@@ -1,10 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
+import { useRef } from 'react';
 import ChartContext from '../../context/LineChartContext';
 import 'chartjs-adapter-date-fns';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, UpdateModeEnum } from 'chart.js';
+import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -12,10 +13,16 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function DoughnutChartOfV9() {
   const options = {
     responsive: true,
+    onClick: ()=> {delete data.datasets[1].hidden; console.log(data.datasets[1]); },
     plugins: {
-      legend: {
+      legend: 
+      {
         position: 'top',
+        
+
+        }
       },
+     
       title: {
         display: true,
         text: 'CO2 emissions by sectors (%)',
@@ -32,33 +39,37 @@ function DoughnutChartOfV9() {
           return subSectorTextReturn(context[0].label);
          }
         }
-      }
+      },
       
-    },
 };
    
 
-
+  
 
     let {allDataOfV9, fetchAllDataOfV9} = useContext(ChartContext); 
     useEffect(() => {
         fetchAllDataOfV9();
     },[]);
+    //Get main sectors  from the database
+     let mainSector = allDataOfV9.map((data) => data.sector);
 
-    let mainSector = allDataOfV9.map((data) => data.sector);
-
+     const chartRef = useRef();
+     const onClick = (event,element) => {
+       let pressedSector = getElementAtEvent(chartRef.current, event);
+       console.log(pressedSector);
+       data.datasets[2].hidden = false
+     }
 
     //Energy total greenhouse gas submissions
     let energyTotal = allDataOfV9.filter(x => x.sector === "Energy").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
-    
+    // Industry total greenhouse gas submissions
     let industryTotal = allDataOfV9.filter(x => x.sector === "Industry ").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
     //Agriculture, Forestry & Land Use total greenhouse gas submissions
     let agricultureTotal = parseFloat(allDataOfV9.filter(x => x.sector === "Agriculture, Forestry & Land Use").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0).toFixed(1));
-
     //Waste total greenhouse gas submissions
-
     let wasteTotal = allDataOfV9.filter(x => x.sector === "Waste").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
-  
+    
+
      // Function to return text for afterBody of each sector in a graph
      const subSectorTextReturn = (label) => {
       
@@ -70,7 +81,7 @@ function DoughnutChartOfV9() {
   
       let totalForEachSector = energyNames.map(x => x.sub_sector);
   
-      let removeDuplicates = totalForEachSector.filter((a, b) => totalForEachSector.indexOf(a) == b);
+      let removeDuplicates = totalForEachSector.filter((a, b) => totalForEachSector.indexOf(a) === b);
   
   
       let arrayOfNewObjects = [];
@@ -109,7 +120,7 @@ function DoughnutChartOfV9() {
           totalSummation += value.gas_emission_value;
         });
   
-        text += `${getName}` + ": " + `${totalSummation.toFixed(1)}` + "%"+" (the main sub-sector) " + "\n";
+        text += `${getName}: ${totalSummation.toFixed(1)}` + "% (the main sub-sector) " + "\n";
   
         item[getName].forEach((value) => {
           text += `${value.sub_sub_sector}` + ": " + `${value.gas_emission_value}` +"%"+ "\n";
@@ -123,7 +134,7 @@ function DoughnutChartOfV9() {
     };
     
     let testDataArray = [energyTotal,industryTotal, agricultureTotal, wasteTotal];
- 
+    let testArray =  [2,3,4,5,6,4]
   
     let Filter = (arr) =>
     {
@@ -138,11 +149,27 @@ function DoughnutChartOfV9() {
          labels: Filter(mainSector),
           datasets:
               [{
-                  label: "%",
                   data: testDataArray,
                   borderColor: "rgb(0, 0, 0)",
-                  backgroundColor: ["rgb(255,255,0)","rgb(169,169,169)","rgb(0,100,0)","rgb(139,69,19)"]
-              }
+                  backgroundColor: ["rgb(255,255,0)","rgb(169,169,169)","rgb(0,100,0)","rgb(139,69,19)"],
+                  labels: Filter(mainSector),
+              },
+              {
+                data: testArray,
+                borderColor: "rgb(0, 0, 0)",
+                backgroundColor: ["rgb(255,255,0)","rgb(169,169,169)","rgb(0,100,0)","rgb(139,69,19)"],
+                labels: ["test","test","test","test","test","test"],
+                hidden:true,
+            },
+            {
+              label: "SubSubSector",
+              data: testArray,
+              borderColor: "rgb(0, 0, 0)",
+              backgroundColor: ["rgb(255,255,0)","rgb(169,169,169)","rgb(0,100,0)","rgb(139,69,19)"],
+              labels:["test","test","test","test","test","test"],
+              hidden:true,
+          },
+
             
            
             ]
@@ -157,7 +184,7 @@ function DoughnutChartOfV9() {
   return (
     <div>
         <div style={{width: '80%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
-            <Doughnut options={options} data={data} />
+            <Doughnut  ref={chartRef} options={options} data={data} onClick={onClick}/>
             <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>
             <p style={{textAlign: "left", color: 'black', marginBottom: 5}}> 
             This chart shows methane emissions by sector, measured in tonnes of carbon dioxide equivalents.
