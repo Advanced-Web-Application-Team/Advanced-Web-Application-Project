@@ -13,7 +13,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 function DoughnutChartOfV9() {
   const options = {
     responsive: true,
-    onClick: ()=> {delete data.datasets[1].hidden; console.log(data.datasets[1]); },
     plugins: {
       legend: 
       {
@@ -52,12 +51,21 @@ function DoughnutChartOfV9() {
     },[]);
     //Get main sectors  from the database
      let mainSector = allDataOfV9.map((data) => data.sector);
-
+    //Get graph reference
      const chartRef = useRef();
+
      const onClick = (event,element) => {
-       let pressedSector = getElementAtEvent(chartRef.current, event);
+      //Get current chart stuff
+      const chart = chartRef.current
+      console.log(data.datasets)
+      data.datasets[0].data = [1,2,3,4,5,6];
+      delete data.datasets[1].hidden
+      delete data.datasets[2].hidden
+      console.log(data.datasets)
+      //Why does this not work ?????
+      chart.update();
+      let pressedSector = getElementAtEvent(chartRef.current, event);
        console.log(pressedSector);
-       data.datasets[2].hidden = false
      }
 
     //Energy total greenhouse gas submissions
