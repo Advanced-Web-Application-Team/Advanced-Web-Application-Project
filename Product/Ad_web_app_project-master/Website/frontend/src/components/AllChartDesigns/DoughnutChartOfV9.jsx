@@ -24,18 +24,12 @@ function DoughnutChartOfV9() {
 
   const options = {
     responsive: true,
-    onClick: (evt, element) => {
-      setShowHidden(!showHidden);
-      setGetNumber(element[0].index);
-    },
     plugins: {
       legend: 
       {
         position: 'top',
-        
-
-        }
       },
+      
      
       title: {
         display: true,
@@ -45,18 +39,20 @@ function DoughnutChartOfV9() {
       { 
         callbacks: 
         {
-         afterBody: (context) => {
-            return "new text";
-         },
-         afterFooter: (context) => 
+         footer: (context) => 
          {
-          // return Filter(sub_sub_categoryArray)
-         
           return subSectorTextReturn(context[0].label);
-         }
-        }
+         },
+         afterFooter: () => {return "Click to show/hide sub-sectors"}
+
+        },
       },
-      
+    },
+
+      onClick: (evt, element) => {
+        setShowHidden(!showHidden);
+        setGetNumber(element[0].index);
+      },
 };
    
 
@@ -68,22 +64,6 @@ function DoughnutChartOfV9() {
     },[]);
     //Get main sectors  from the database
      let mainSector = allDataOfV9.map((data) => data.sector);
-    //Get graph reference
-     const chartRef = useRef();
-
-     const onClick = (event,element) => {
-      //Get current chart stuff
-      const chart = chartRef.current
-      console.log(data.datasets)
-      data.datasets[0].data = [1,2,3,4,5,6];
-      delete data.datasets[1].hidden
-      delete data.datasets[2].hidden
-      console.log(data.datasets)
-      //Why does this not work ?????
-      chart.update();
-      let pressedSector = getElementAtEvent(chartRef.current, event);
-       console.log(pressedSector);
-     }
 
     //Energy total greenhouse gas submissions
     let energyTotal = allDataOfV9.filter(x => x.sector === "Energy").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
@@ -116,8 +96,6 @@ function DoughnutChartOfV9() {
   
   
         let filterEachSubSector = allDataOfV9.filter((value) => value.sub_sector === data);
-  
-    
   
         let mappedDataForSubSector = filterEachSubSector.map((data) => ({
             sub_sub_sector: data.sub_sub_sector,
@@ -327,15 +305,10 @@ function DoughnutChartOfV9() {
             
       }
 
-  
-  
-
-
-
   return (
     <div>
         <div style={{width: '80%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
-            <Doughnut  ref={chartRef} options={options} data={data} onClick={onClick}/>
+            <Doughnut   options={options} data={data} />
             <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>
             <p style={{textAlign: "left", color: 'black', marginBottom: 5}}> 
             This chart shows methane emissions by sector, measured in tonnes of carbon dioxide equivalents.
