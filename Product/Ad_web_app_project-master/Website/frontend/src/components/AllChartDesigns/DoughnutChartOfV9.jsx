@@ -78,7 +78,7 @@ function DoughnutChartOfV9() {
     
     //Waste total greenhouse gas submissions
     let wasteTotal = allDataOfV9.filter(x => x.sector === "Waste").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
-  // Filter to filter duplicate values off arrays
+  // Function to filter duplicate values off arrays
     let Filter = (arr) =>
     {
      let result = arr.filter((element, i) => arr.indexOf(element) === i)

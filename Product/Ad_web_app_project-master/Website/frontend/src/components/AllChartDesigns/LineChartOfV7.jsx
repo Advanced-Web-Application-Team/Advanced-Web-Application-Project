@@ -140,7 +140,7 @@ function LineChartOfV7() {
 let Events = allDataOfV7.map((value) => 
 ({
     x: value.time,
-    y: value.carbon_dioxide,
+    y: value.surface_temp,
 }));
 
 
@@ -165,11 +165,12 @@ let Events = allDataOfV7.map((value) =>
           {
             label: "Events",
             data: Events,
-            borderColor: "rgb(0,0,255)",
-            backgroundColor: 'rgba(0,0,255)',
+            borderColor: "rgb(192,192,192)",
+            backgroundColor: 'rgba(192,192,192)',
             labels: eventLabels,
             showLine:false,
             pointRadius: 0,
+            yAxisID:"B"
         },
         ]
     }

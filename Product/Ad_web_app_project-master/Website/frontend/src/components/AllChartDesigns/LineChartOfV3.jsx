@@ -83,6 +83,7 @@ import {
 function LineChartOfV3() {
 
     let {allDataOfV3, fetchAllDataOfV3} = useContext(LineChartContext);
+    
 
     let yearArray = allDataOfV3.map((data) => data.Time);
     let distinctYearArray = yearArray.filter((a, b) => yearArray.indexOf(a) === b);

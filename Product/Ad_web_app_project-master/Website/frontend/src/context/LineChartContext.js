@@ -11,10 +11,8 @@ const LineChartContext = createContext({
     allDataOfV7: [],
     allDataOfV8: [],
     allDataOfV9: [],
-    fetchAllDataOfV3: () => {}
 });
 
-const API_SECOND_URL_OF_V1 = "/v1vi/";
 const API_URL_OF_V2 = "/v2/";
 const API_URL_OF_V3 = "/v3/";
 const API_URL_OF_V4 = "/v4/";

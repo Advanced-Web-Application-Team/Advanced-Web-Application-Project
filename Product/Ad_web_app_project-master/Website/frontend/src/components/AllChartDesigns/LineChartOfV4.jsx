@@ -88,23 +88,25 @@ const options = {
 
 function LineChartOfV4() {
 
-    let {allDataOfV4, fetchAllDataOfV4} = useContext(LineChartContext); 
+  let {allDataOfV3, fetchAllDataOfV3} = useContext(LineChartContext);
+  let {allDataOfV4, fetchAllDataOfV4} = useContext(LineChartContext); 
+
     
 
     useEffect(() => {
-        fetchAllDataOfV4();
+      fetchAllDataOfV4();
+      fetchAllDataOfV3();
     },[]);
-    
+   
     //Filter data for visualization
     let yearArray = allDataOfV4.map((data) => data.year);
-    let distinctYearArray = yearArray.filter((a, b) => yearArray.indexOf(a) === b);
    
    
     let co2_annually = allDataOfV4.map((data) => ({
         x: data.year,
         y: data.co2_annually
     }));
-
+   
     let de08_mixing_ratio = allDataOfV4.map((data) => ({
         x: data.year,
         y: data.de08_co2_mixing_ratio
@@ -119,37 +121,62 @@ function LineChartOfV4() {
         x: data.year,
         y: data.dss_co2_mixing_ratio,
     }));
-    
+
+    let Mauna_Loa_Annual = allDataOfV3.map((data) => ({
+      x: data.Time,
+      y: data.co2_annual_avg
+  }));
+
+  let Mauna_Loa_Monthly = allDataOfV3.map((data) => ({
+    x: data.Time,
+    y: data.co2_monthly_avg
+}));
     const data = {
-        labels: distinctYearArray,
+        labels: yearArray,
         datasets: [
             {
                 label: "CO2 Annual",
                 data: co2_annually,
                 borderColor: "rgb(238, 75, 43)",
-                backgroundColor: 'rgba(238, 75, 43)'
+                backgroundColor: 'rgba(238, 75, 43)',
+                spanGaps:true
             },
             {
                 label: "DE08 CO2 Mixing Ratio",
                 data: de08_mixing_ratio,
                 borderColor: "rgb(70,130,180)",
-                backgroundColor: 'rgba(70,130,180)'
+                backgroundColor: 'rgba(70,130,180)',
+                spanGaps:true
             },
             {
                 label: "DE08-2 CO2 Mixing Ratio",
                 data: de08_2_mixing_ratio,
                 borderColor: "rgb(138,43,226)",
-                backgroundColor: 'rgba(138,43,226)'
+                backgroundColor: 'rgba(138,43,226)',
+                spanGaps:true
             },
             {
                 label: "DSS CO2 Mixing Ratio",
                 data: dss_mixing_ratio,
                 borderColor: "rgb(0,0,139)",
-                backgroundColor: 'rgba(0,0,139)'
+                backgroundColor: 'rgba(0,0,139)',
+                spanGaps:true
             },
+            {
+              label: "Mauna Loa CO2 Annual",
+              data: Mauna_Loa_Annual,
+              borderColor: "rgb(50, 2, 0)",
+              backgroundColor: 'rgba(238, 75, 43)'
+          },
+          {
+            label: "Mauna Loa CO2 Monthly",
+            data: Mauna_Loa_Monthly,
+            borderColor: "rgb(250, 250, 0)",
+            backgroundColor: 'rgba(238, 75, 43)'
+        },
         ]
     };
-
+ console.log(data)
   return (
     <div>
         <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
