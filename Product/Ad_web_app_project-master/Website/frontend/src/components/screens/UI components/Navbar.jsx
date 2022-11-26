@@ -2,7 +2,6 @@ import React from 'react';
 import {FaTimes} from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { logoutFunction } from '../../../store/actions/AuthActions';
 import { useDispatch } from 'react-redux';
 
@@ -77,10 +76,10 @@ function Navbar({closeModal, navbarOpen}) {
     let {user} = useSelector(state => state.auth);
 
   return (
-    <div className={navbarOpen && "nav fixed top-0 left-0 w-full h-full z-10"} onClick={() => closeModal()} >
+    <div className={navbarOpen ? "nav fixed top-0 left-0 w-full h-full z-10": undefined} onClick={() => closeModal()} >
         <div className={navbarOpen ? ("open active absolute top-0 left-0 w-3/12 xl:w-2/12 md:w-2/12 lg:w-2/12 h-full bg-gray-200") : "open absolute top-0 left-0 w-3/12 xl:w-2/12 md:w-2/12 lg:w-2/12 h-full bg-gray-200"} onClick={(e) => e.stopPropagation()}>
             <div className='flex items-center justify-between my-10 px-2'>
-            <h1 className="text-xl text-black font-bold"> Navbar  </h1>
+            <h1 className="text-xl text-black font-bold"> Navigation  </h1>
             <FaTimes className="inline-block border-2 cursor-pointer" size={24} color={"red"} onClick={handleClick}/>
             </div>
             <ul className='p-0 border-2'>

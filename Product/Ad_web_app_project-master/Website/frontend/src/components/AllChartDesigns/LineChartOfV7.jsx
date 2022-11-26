@@ -56,9 +56,22 @@ function LineChartOfV7() {
     { 
       callbacks: 
       {
-       afterBody: (context) => 
+       label: (context) => 
        {
-       return;
+        if(context.dataset.label === "Events")
+        {
+          return context.dataset.labels[context.dataIndex]
+        }
+       else if(context.dataset.label === "Carbon dioxide (ppm)")
+       {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+       return `${context.dataset.label}: ${dataValue[1]} ppm`
+       }
+      else if(context.dataset.label === "Surface temperature change(50%)")
+      {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+        return `${context.dataset.label}: ${dataValue[1]} `
+      }
        }
       }
     },
@@ -109,8 +122,8 @@ function LineChartOfV7() {
     useEffect(() => {
         fetchAllDataOfV7();
     },[]);
-    let testarray = [];
     let yearLabels = allDataOfV7.map((value) => value.time);
+    let eventLabels = allDataOfV7.map((value) => value.Event);
 
     let carbonValue = allDataOfV7.map((value) => ({
        x: value.time,
@@ -127,8 +140,10 @@ function LineChartOfV7() {
 let Events = allDataOfV7.map((value) => 
 ({
     x: value.time,
-    y: value.Event,
+    y: value.carbon_dioxide,
 }));
+
+
 
     const data = {
         labels: yearLabels,
@@ -152,6 +167,9 @@ let Events = allDataOfV7.map((value) =>
             data: Events,
             borderColor: "rgb(0,0,255)",
             backgroundColor: 'rgba(0,0,255)',
+            labels: eventLabels,
+            showLine:false,
+            pointRadius: 0,
         },
         ]
     }

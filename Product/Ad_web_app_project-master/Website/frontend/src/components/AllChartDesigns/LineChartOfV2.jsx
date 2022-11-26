@@ -189,12 +189,12 @@ function LineChartOfV2() {
         Northern Hemisphere temperature reconstruction for the past 2,000 years is shown by combining low-resolution proxies with tree-ring data, using a wavelet transform technique to achieve timescale-dependent processing of the data.
         </p>
 
-        <p style={{textAlign: "left"}}> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> 
-        <p className='description'> https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt </p> 
-        <p className='description'> https://www.metoffice.gov.uk/hadobs/hadcrut5/ </p>
-        <p className='description' style={{fontWeight: "bold"}}> Data measurements:</p>
-        <p className='description'> https://gml.noaa.gov/ccgg/about/co2_measurements.html</p>
-        </p>
+        <div style={{textAlign: "left"}}> <div style={{fontWeight: "bold"}}> Link to data source for description: </div> 
+        <div className='description'> https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt </div> 
+        <span className='description'> https://www.metoffice.gov.uk/hadobs/hadcrut5/ </span>
+        <div className='description' style={{fontWeight: "bold"}}> Data measurements:</div>
+        <span className='description'> https://gml.noaa.gov/ccgg/about/co2_measurements.html</span>
+        </div>
     </div>
 </div>
   )

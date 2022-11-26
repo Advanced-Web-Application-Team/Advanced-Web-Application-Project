@@ -2,11 +2,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { useRef } from 'react';
 import ChartContext from '../../context/LineChartContext';
 import 'chartjs-adapter-date-fns';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, UpdateModeEnum } from 'chart.js';
-import { Doughnut, getElementAtEvent } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -79,69 +78,6 @@ function DoughnutChartOfV9() {
     
     //Waste total greenhouse gas submissions
     let wasteTotal = allDataOfV9.filter(x => x.sector === "Waste").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
-    
-
-     // Function to return text for afterBody of each sector in a graph
-     const subSectorTextReturn = (label) => {
-      
-      let energyNames = allDataOfV9.filter(x => x.sector === label).map((value) => ({
-        sub_sector: value.sub_sector,
-        sub_sub_sector: value.sub_sub_sector,
-        gas_emission_value: value.Share_of_global_greenhouse_gas_emissions 
-      }));
-  
-      let totalForEachSector = energyNames.map(x => x.sub_sector);
-  
-      let removeDuplicates = totalForEachSector.filter((a, b) => totalForEachSector.indexOf(a) === b);
-  
-  
-      let arrayOfNewObjects = [];
-      removeDuplicates.forEach((data) => {
-  
-        let newObj = {};
-  
-  
-        let filterEachSubSector = allDataOfV9.filter((value) => value.sub_sector === data);
-  
-        let mappedDataForSubSector = filterEachSubSector.map((data) => ({
-            sub_sub_sector: data.sub_sub_sector,
-            gas_emission_value: data.Share_of_global_greenhouse_gas_emissions
-        }));
-  
-        newObj[data] = mappedDataForSubSector
-  
-        arrayOfNewObjects.push(newObj);
-  
-      
-      });
-  
-      let text = "";
-  
-      arrayOfNewObjects.forEach((item) => {
-        
-        let getKeys = Object.keys(item);
-  
-        let getName = getKeys[0];
-  
-        let totalSummation = 0;
-  
-        item[getName].forEach((value) => {
-          totalSummation += value.gas_emission_value;
-        });
-  
-        text += `${getName}: ${totalSummation.toFixed(1)}` + "% (the main sub-sector) " + "\n";
-  
-        item[getName].forEach((value) => {
-          text += `${value.sub_sub_sector}` + ": " + `${value.gas_emission_value}` +"%"+ "\n";
-        });
-  
-        text += `\n`;
-  
-      });
-
-      return text;
-    };
-    
   // Filter to filter duplicate values off arrays
     let Filter = (arr) =>
     {
@@ -306,7 +242,7 @@ function DoughnutChartOfV9() {
     return color;
   }
 // Sector data values
-  let sectorData = [energyTotal,industryTotal, agricultureTotal, wasteTotal];
+  let sectorData = [Math.round(energyTotal *10)/10,industryTotal, agricultureTotal, wasteTotal];
       const data = {
          labels: Filter(mainSector),
           datasets:
