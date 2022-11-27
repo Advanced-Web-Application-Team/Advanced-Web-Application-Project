@@ -1,9 +1,5 @@
 import React from 'react';
 import EachChart from '../../SingleItem/EachChart';
-import mockData from '../../../data/mockdata';
-import { Splide } from '@splidejs/react-splide';
-import { SplideSlide } from '@splidejs/react-splide';
-import Carousel from '../UI components/Carousel';
 import LineChartOfV2 from '../../AllChartDesigns/LineChartOfV2';
 import LineChartOfV3 from '../../AllChartDesigns/LineChartOfV3';
 import LineChartOfV4 from '../../AllChartDesigns/LineChartOfV4';
