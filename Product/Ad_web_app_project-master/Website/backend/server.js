@@ -8,7 +8,7 @@ let upload = multer({ dest: 'uploads/' });
 let csv = require('csvtojson');
 let connectDB = require("./config/db");
 let errorHandler = require("./middleware/errorHandler");
-
+let LayoutRoute = require("./routes/LayoutRoute");
 
 
 //Route declare
@@ -50,7 +50,7 @@ const PORT = process.env.PORT || 8000;
 
 
 
-//Set up route connection 
+//Set up route connection for charts
 app.use("/v2", V2router);
 app.use("/v3", V3router);
 app.use("/v4", V4router);
@@ -66,6 +66,10 @@ app.use("/v9", V9router);
 //users
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
+
+//Set up route connection for layout
+
+app.use("/layout", LayoutRoute);
 
 //Error handling
 app.use(errorHandler);
