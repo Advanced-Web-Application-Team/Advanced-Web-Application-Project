@@ -2,7 +2,7 @@
 const Layout = require("../models/LayoutModel");
 const asyncHandler = require("express-async-handler");
 
-//@desc     Add layout
+//@desc     Add layout by one specific user
 //@route    /layout
 //@access   Private
 
@@ -11,6 +11,11 @@ exports.addLayout = asyncHandler(async (req, res, next) => {
     let userId = req.user.id;
 
     let {name, listOfCharts, layoutType, idForLink} = req.body;
+
+    if (!userId) {
+        res.status(401)
+        throw new Error("Not a valid authentication!");
+    }
 
     if (name.length === 0) {
         res.status(400)
@@ -32,4 +37,53 @@ exports.addLayout = asyncHandler(async (req, res, next) => {
 
     res.status(200).json(createdLayout);
 
+});
+
+//@desc  Delete a layout by one specific user
+//@route   /layout/delete/:layoutId
+//@access private
+
+exports.deleteLayout = asyncHandler(async (req, res, next) => {
+
+    let userId = req.user.id;
+
+    if (!userId) {
+        res.status(401)
+        throw new Error("Not a valid authentication!");
+    };
+
+    let layout = await Layout.findById(req.params.layoutId);
+
+    if (!layout) {
+        res.status(404)
+        throw new Error("Layout cannot be found!");
+    };
+
+    if (layout.userId.toString() !== userId) {
+        res.status(401)
+        throw new Error("This user is not authenticated to delete this layout!");
+    };
+
+    let deletedLayout = await Layout.findByIdAndDelete(req.params.layoutId);
+
+    res.status(200).json(deletedLayout);
+
+});
+
+//@desc     Get all layouts by one specific user
+//@route    /layout/allByOne/
+//@access   Private
+
+exports.getAllLayoutByUser = asyncHandler(async (req, res, next) => {
+
+    let userId = req.user.id;
+
+    if (!userId) {
+        res.status(401)
+        throw new Error("User not found!");
+    };
+
+    let allLayoutsOfUser = await Layout.find({userId: userId});
+
+    res.status(200).json(allLayoutsOfUser);
 });
