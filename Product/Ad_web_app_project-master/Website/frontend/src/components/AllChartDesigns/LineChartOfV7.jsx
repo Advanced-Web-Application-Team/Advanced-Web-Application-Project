@@ -178,7 +178,7 @@ let Events = allDataOfV7.map((value) =>
 
   return (
     <div>
-    <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10 ,marginBottom: 4, backgroundColor: "white"}}>
+    <div className="p-10" style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, marginBottom: 10, backgroundColor: "white"}}>
         <Line options={options}  data={data} />
 
         <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>
@@ -189,7 +189,8 @@ years estimated from a multi-proxy database of over 20,000 sea
 surface temperature point reconstructions. Global temperature
 gradually cooled until roughly 1.2 million years ago and cooling
 then stalled until the present. </p>
-<p style={{textAlign: "left"}}> <span style={{fontWeight: "bold"}}> Link to data source: </span> http://carolynsnyder.com/publications.php </p>
+<p> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> </p>
+<div><a href="http://carolynsnyder.com/publications.php" className='underline text-sky-600 font-bold'>Link to Data (Click to get)</a></div>
     </div>
 </div>
   )

@@ -251,14 +251,14 @@ function DoughnutChartOfV9() {
               },
               {
                 data: getValuesOfSubSector(getNumber),
-                borderColor: [randomColors()],
+                borderColor: "rgba(0,0,0)",
                 backgroundColor: getColor(getNumber),
                 labels: getLabelsOfSubSector(getNumber),
                 hidden: showHidden,
             },
             {
               data: getValuesOfSubSubSector(getNumber),
-              borderColor: randomColors(),
+              borderColor: "rgba(0,0,0)",
               backgroundColor: getColor(getNumber),
               labels: getLabelsOfSubSubSector(getNumber),
               hidden: showHidden,
@@ -273,14 +273,14 @@ function DoughnutChartOfV9() {
             <Doughnut   options={options} data={data} />
             <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>
             <p style={{textAlign: "left", color: 'black', marginBottom: 5}}> 
-            This chart shows methane emissions by sector, measured in tonnes of carbon dioxide equivalents.
+            This doughmut chart shows the breakdown of global greenhouse gas emissions in 2016.
 
-We see that, globally, agriculture is the largest contributor to methane emissions. Most of this methane comes from livestock (they produce methane through their digestive processes, in a process known as ‘enteric fermentation’). Rice production is also a large contributor to methane emissions.
-            
+            t is clear from this breakdown that a range of sectors and processes contribute to global emissions. This means there is no single or simple solution to tackle climate change. Focusing on electricity, or transport, or food, or deforestation alone is insufficient.
             </p>
-            <span></span>
-
-            <p style={{textAlign: "left", paddingTop: "20px",}}> <span style={{fontWeight: "bold"}}> Link to data source:</span> https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx </p>
+           
+            <p> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> </p>
+            <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx" className='underline text-sky-600 font-bold'> Link to measurement dataset (Click to get) </a> 
+            
 
         </div>
     </div>

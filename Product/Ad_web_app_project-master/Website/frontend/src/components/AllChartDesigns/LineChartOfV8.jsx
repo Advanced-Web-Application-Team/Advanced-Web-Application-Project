@@ -169,7 +169,7 @@ for (let i = 0; i < countriesNumber; i++)
 
   return (
     <div>
-        <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
+        <div className="p-10" style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, marginBottom: 10, backgroundColor: "white"}}>
             <Line options={options}  data={data} />
             <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>
             <p style={{textAlign: "left", color: 'black', marginBottom: 5}}>  
@@ -177,8 +177,9 @@ for (let i = 0; i < countriesNumber; i++)
 
             The Global Carbon Budget is done by the researchers of the Global Carbon Project (GCP), including scientists from the ICOS community.
             </p>
-            <span></span>
-            <p style={{textAlign: "left", paddingTop: "20px",}}> <span style={{fontWeight: "bold"}}> Link to data source:</span> https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D  </p>
+            <p> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> </p>
+            <div><a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" className='underline text-sky-600 font-bold'>Link to Data (Click to get)</a></div>
+           
         </div>
     </div>
   )
