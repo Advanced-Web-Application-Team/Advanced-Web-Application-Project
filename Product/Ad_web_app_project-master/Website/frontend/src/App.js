@@ -25,7 +25,7 @@ import LineChartOfV7 from './components/AllChartDesigns/LineChartOfV7';
 import LineChartOfV8 from './components/AllChartDesigns/LineChartOfV8';
 import DoughnutChartOfV9 from './components/AllChartDesigns/DoughnutChartOfV9';
 import { LineChartProvider } from './context/LineChartContext';
-
+import PublicLayout from './components/screens/MainPage/PublicLayout';
 
 let arrayScreen = [];
 arrayScreen.push({id: "v2", item: <LineChartOfV2 />});
@@ -89,6 +89,9 @@ function App() {
 
           {/* Page for emission sources charts */}
           <Route path ="/emission" element={<SecondPage />}/>
+
+           {/* Page for public layout */}
+           <Route path="/publiclayout/:idForLink" element={<PublicLayout />}/>
       </Routes>
       </div>
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-
+import { fetchLayouts } from '../../../store/actions/LayoutAddActions';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import SingleLayoutDisplayInProfile from '../../SingleItem/SingleLayoutDisplayInProfile';
 
 
 //User Page for log-in user 
@@ -10,7 +12,21 @@ function UserProfilePage() {
     //Global state from redux for auth
     let {user} = useSelector(state => state.auth);
 
+      //Global state from redux for layout arrays
 
+      let {layoutArrays} = useSelector(state => state.layoutAdd);
+
+      //Set dispatch
+  
+      let dispatch = useDispatch();
+  
+      // Set effect for fetching
+  
+      useEffect(() => {
+        dispatch(fetchLayouts());
+      },[]);
+      
+    console.log(layoutArrays);
     
 
   return (
@@ -26,6 +42,21 @@ function UserProfilePage() {
                     <h3 className='text-black font-bold text-xl mt-5'> Email: {user.email}</h3>
 
             </div>
+
+            <div className='my-10'>
+              <h1 className='text-black font-bold text-3xl'> List of layouts created by {user.username}: </h1>
+            </div>
+
+            {layoutArrays.length === 0 && (
+              <h3 className='text-pink-600 font-bold text-3xl my-10 text-center'> No layouts are created by {user.username} </h3>
+            )}
+            
+            {layoutArrays.length > 0 && (
+              layoutArrays.map((layout) => (
+                <SingleLayoutDisplayInProfile key={layout._id} layout={layout}/>
+              ))
+            )}
+
         </div>
         </div>
   )

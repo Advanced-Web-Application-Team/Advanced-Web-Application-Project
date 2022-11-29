@@ -16,11 +16,13 @@ export const addLayout = (layoutInputs) => async (dispatch, getState) => {
             }
         };
 
-        let check = await axios.post(API_URL, layoutInputs, config);
+        let response = await axios.post(API_URL, layoutInputs, config);
 
+        let data = response.data;
         
         dispatch({
-            type: "ADD_LAYOUT_SUCCESSFULLY"
+            type: "ADD_LAYOUT_SUCCESSFULLY",
+            payload: data
         });
 
 

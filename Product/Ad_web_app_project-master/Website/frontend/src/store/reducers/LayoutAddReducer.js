@@ -28,6 +28,7 @@ export const layoutAddReducer = (state = {layoutArrays: [], isSuccess: false, is
         case "ADD_LAYOUT_SUCCESSFULLY":
             return {
                 ...state,
+                layoutArrays: [...state.layoutArrays, action.payload],
                 isSuccess: true
             }
         case "ADD_LAYOUT_FAIL":
@@ -38,6 +39,7 @@ export const layoutAddReducer = (state = {layoutArrays: [], isSuccess: false, is
             }
         case "ADD_LAYOUT_RESET":
             return {
+                ...state,
                 isSuccess: false,
                 isError: false,
                 message: ""
