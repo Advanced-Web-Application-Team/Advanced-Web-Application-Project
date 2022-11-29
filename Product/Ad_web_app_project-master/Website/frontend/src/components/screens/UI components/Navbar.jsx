@@ -91,11 +91,11 @@ function Navbar({closeModal, navbarOpen}) {
                          <li className='py-5 text-center text-center pt-5 border-b-2 border-b-gray-600 cursor-pointer font-bold' onClick={toProfilePage}> <p> User: {user.username} </p> </li>
                     ) : (  <li className='py-5 text-center text-center pt-5 border-b-2 border-b-gray-600 cursor-pointer font-bold' onClick={toLogIn}> <p> Log In </p> </li>)}
 
-                {user.username && (
+                {user.username ? (
                     <li className='py-5 text-center text-center pt-5 border-b-2 border-b-gray-600 cursor-pointer font-bold' onClick={handleLogout}> <p> Log out </p> </li>
-                )}
+                ):<li className='py-5 text-center text-center pt-5 border-b-2 border-b-gray-600 cursor-pointer font-bold' onClick={toRegister}> Register </li>}
               
-                <li className='py-5 text-center text-center pt-5 border-b-2 border-b-gray-600 cursor-pointer font-bold' onClick={toRegister}> Register </li>
+              
                 
             </ul>
         </div>

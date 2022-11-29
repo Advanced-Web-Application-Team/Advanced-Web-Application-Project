@@ -49,6 +49,7 @@ function DoughnutChartOfV9() {
     },
 
       onClick: (evt, element) => {
+        console.log(element)
         setShowHidden(!showHidden);
         setGetNumber(element[0].index);
       },
