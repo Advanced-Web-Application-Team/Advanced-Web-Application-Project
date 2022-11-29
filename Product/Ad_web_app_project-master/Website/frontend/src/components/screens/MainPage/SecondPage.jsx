@@ -14,7 +14,6 @@ arrayScreen.push({id: "v9", item: <DoughnutChartOfV9 />});
 
 function SecondPage() {
 
-  console.log(arrayScreen);
   return (
     <div className="bg-stone-300 p-5">
         {arrayScreen.map((item) => (

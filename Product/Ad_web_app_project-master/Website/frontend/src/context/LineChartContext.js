@@ -12,7 +12,7 @@ const LineChartContext = createContext({
     allDataOfV8: [],
     allDataOfV9: [],
 });
-
+const url = process.env.REACT_APP_SERVER_URL 
 const API_URL_OF_V2 = "/v2/";
 const API_URL_OF_V3 = "/v3/";
 const API_URL_OF_V4 = "/v4/";
@@ -84,8 +84,7 @@ export const LineChartProvider = ({children}) => {
     };
     let [state, dispatch] = useReducer(lineChartReducer, initialState);
     const fetchAllDataOfV2 = async () => {
-        let response = await axios.get(API_URL_OF_V2 + "all");
-
+        let response = await axios.get(url + API_URL_OF_V2 + "all");
         let data = response.data;
 
         dispatch({
@@ -96,7 +95,7 @@ export const LineChartProvider = ({children}) => {
 
     const fetchAllDataOfV3 = async () => {
 
-        let response = await axios.get(API_URL_OF_V3 + "all");
+        let response = await axios.get(url + API_URL_OF_V3 + "all");
 
         let data = response.data;
 
@@ -107,7 +106,7 @@ export const LineChartProvider = ({children}) => {
     };
     const fetchAllDataOfV4 = async () => {
 
-        let response = await axios.get(API_URL_OF_V4 + "all");
+        let response = await axios.get(url + API_URL_OF_V4 + "all");
 
         let data = response.data;
 
@@ -118,7 +117,7 @@ export const LineChartProvider = ({children}) => {
     };
 
     const fetchAllDataOfV5 = async () => {
-        let response = await axios.get(API_URL_OF_V5 + "all");
+        let response = await axios.get(url + API_URL_OF_V5 + "all");
 
         let data = response.data;
 
@@ -129,7 +128,7 @@ export const LineChartProvider = ({children}) => {
     };
 
     const fetchAllDataOfV6 = async () => {
-        let response = await axios.get(API_URL_OF_V6 + "all");
+        let response = await axios.get(url + API_URL_OF_V6 + "all");
 
         let data = response.data;
 
@@ -141,7 +140,7 @@ export const LineChartProvider = ({children}) => {
     };
 
     const fetchAllDataOfV7 = async () => {
-        let response = await axios.get(API_URL_OF_V7 + "all");
+        let response = await axios.get(url + API_URL_OF_V7 + "all");
 
         let data = response.data;
 
@@ -153,7 +152,7 @@ export const LineChartProvider = ({children}) => {
     };
 
     const fetchAllDataOfV8 = async () => {
-        let response = await axios.get(API_URL_OF_V8 + "all");
+        let response = await axios.get(url + API_URL_OF_V8 + "all");
 
         let data = response.data;
 
@@ -165,7 +164,7 @@ export const LineChartProvider = ({children}) => {
     };
     
     const fetchAllDataOfV9 = async () => {
-        let response = await axios.get(API_URL_OF_V9 + "all");
+        let response = await axios.get(url + API_URL_OF_V9 + "all");
 
         let data = response.data;
 

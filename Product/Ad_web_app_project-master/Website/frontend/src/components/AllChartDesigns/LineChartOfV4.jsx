@@ -228,7 +228,7 @@ let eventLabels = allDataOfV4.map((value) => value.event);
 
         ]
     };
- console.log(data)
+
   return (
     <div>
         <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>

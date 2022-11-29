@@ -27,7 +27,6 @@ import DoughnutChartOfV9 from './components/AllChartDesigns/DoughnutChartOfV9';
 import { LineChartProvider } from './context/LineChartContext';
 
 
-
 let arrayScreen = [];
 arrayScreen.push({id: "v2", item: <LineChartOfV2 />});
 arrayScreen.push({id: "v3", item: <LineChartOfV3 />});
