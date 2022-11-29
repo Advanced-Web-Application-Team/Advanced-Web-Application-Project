@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
 import ChartContext from '../../context/LineChartContext';
-import 'chartjs-adapter-date-fns';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, UpdateModeEnum } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
 
@@ -65,8 +64,6 @@ function DoughnutChartOfV9() {
    
     //Get main sectors from the database
      let mainSector = allDataOfV9.map((data) => data.sector);
-     //Get sub sectors from database
-     let subSector = allDataOfV9.map((data) => data.sub_sector)
     //Energy total greenhouse gas submissions
     let energyTotal = allDataOfV9.filter(x => x.sector === "Energy").map(x => x.Share_of_global_greenhouse_gas_emissions).reduce((acc, element) => acc += element, 0);
   

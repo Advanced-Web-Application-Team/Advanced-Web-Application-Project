@@ -2,10 +2,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import LineChartContext from '../../context/LineChartContext';
-import axios from "axios";
-import 'chartjs-adapter-date-fns';
-import {enGB} from "date-fns/locale";
-import { useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,

@@ -1,7 +1,7 @@
 {
-  "name": "testcsv",
+  "name": "website",
   "version": "1.0.0",
-  "description": "testcsv",
+  "description": "website",
   "main": "server.js",
   "scripts": {
     "server": "nodemon backend/server.js",
