@@ -90,7 +90,7 @@ function LineChartOfV7() {
       zoom: {
         zoom: {
           wheel: {
-            enabled: true // SET SCROll ZOOM TO TRUE
+            enabled: true 
           },
           speed: 100
         },
@@ -106,8 +106,8 @@ function LineChartOfV7() {
       A: {
         type: 'linear',
         position: 'left',
-    },
-    B: {
+         },
+      B: {
         type: 'linear',
         position: 'right',
         grid: {

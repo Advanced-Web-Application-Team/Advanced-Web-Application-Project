@@ -2,10 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import LineChartContext from '../../context/LineChartContext';
-import axios from "axios";
 import 'chartjs-adapter-date-fns';
-import {enGB} from "date-fns/locale";
-import { useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -33,7 +30,9 @@ ChartJS.register(
   );
 
 const options = {
-    responsive: true,
+  responsive: true,
+  interaction: {mode: 'nearest', axis:"x",intersect:false},
+  stacked:false,
     options: {
         transitions: {
           zoom: {
@@ -46,6 +45,50 @@ const options = {
        
       },
     plugins: {
+      tooltip:
+    { 
+      callbacks: 
+      {
+       label: (context) => 
+       {
+        if(context.dataset.label === "Events")
+        {
+          return context.dataset.labels[context.dataIndex]
+        }
+       else if(context.dataset.label === "CO2 Annual")
+       {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+       return `${context.dataset.label}: ${dataValue[1]}`
+       }
+      else if(context.dataset.label === "DE08 CO2 Mixing Ratio")
+      {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+        return `${context.dataset.label}: ${dataValue[1]} `
+      }
+      else if(context.dataset.label === "DE08-2 CO2 Mixing Ratio")
+      {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+        return `${context.dataset.label}: ${dataValue[1]} `
+      }
+      else if(context.dataset.label === "DSS CO2 Mixing Ratio")
+      {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+        return `${context.dataset.label}: ${dataValue[1]} `
+      }
+      else if(context.dataset.label === "Mauna Loa CO2 Annual")
+      {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+        return `${context.dataset.label}: ${dataValue[1]} `
+      }
+      else if(context.dataset.label === "Mauna Loa CO2 Monthly")
+      {
+        let dataValue = Object.values(context.dataset.data[context.dataIndex])
+        return `${context.dataset.label}: ${dataValue[1]} `
+      }
+       }
+      }
+    },
+
       legend: {
         position: 'top',
       },
@@ -53,23 +96,17 @@ const options = {
         display: true,
         text: 'Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements (https://cdiac.ess-dive.lbl.gov/trends/co2/lawdome.html)',
       },
-      subtitle: {
-        display: true,
-        text: 'Custom Chart Subtitle'
-    },
     scales: {
-        xAxes: [{
-          type: 'time',
-          time: {
-            unit: 'month'
-          }
-        }],
+      y: {
+        type: 'linear',
+        position: 'left',
+         },
       }      
 ,
       zoom: {
         zoom: {
           wheel: {
-            enabled: true // SET SCROOL ZOOM TO TRUE
+            enabled: true
           },
           mode: "xy",
           speed: 100
@@ -131,6 +168,13 @@ function LineChartOfV4() {
     x: data.Time,
     y: data.co2_monthly_avg
 }));
+let Events = allDataOfV4.map((data) => ({
+  x: data.year,
+  y: data.co2_annually
+}));
+
+let eventLabels = allDataOfV4.map((value) => value.event);
+
     const data = {
         labels: yearArray,
         datasets: [
@@ -173,7 +217,16 @@ function LineChartOfV4() {
             data: Mauna_Loa_Monthly,
             borderColor: "rgb(250, 250, 0)",
             backgroundColor: 'rgba(238, 75, 43)'
-        },
+         },
+         { 
+            label: "Events",
+            data: Events,
+            borderColor: "rgb(192,192,192)",
+            backgroundColor: 'rgba(192,192,192)',
+            labels: eventLabels,
+            showLine:false,
+          }
+
         ]
     };
  console.log(data)
