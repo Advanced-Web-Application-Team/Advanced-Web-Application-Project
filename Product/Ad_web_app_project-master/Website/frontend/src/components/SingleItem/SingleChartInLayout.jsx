@@ -2,8 +2,9 @@ import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { removeFromLayout } from '../../store/actions/LayoutActions';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-function SingleChartInLayout({item, id, side}) {
+function SingleChartInLayout({item, id, side, addToCharts}) {
 
     //Set dispatch
 
@@ -14,6 +15,31 @@ function SingleChartInLayout({item, id, side}) {
     const handleDelete = () => {
         dispatch(removeFromLayout(id));
     };
+
+    //Set state for description
+
+    let [chartList, setChartList] = useState({
+        chartId: id,
+        description: ""
+    })
+    
+    //Set changes for description
+
+    const handleChange = (e) => {
+
+        setChartList((chartList) => {
+            return {
+                ...chartList,
+                [e.target.name] : e.target.value
+            }
+        })
+        
+        addToCharts((prevCharts) => {
+            return prevCharts.map((chart) => chart.chartId === chartList.chartId ? {...chart, ...chartList} : chart);
+        });
+    };
+
+    
 
 
   return (
@@ -30,7 +56,7 @@ function SingleChartInLayout({item, id, side}) {
        
 
         <div className='flex items-center justify-center w-full'>
-            <textarea name="description" id="description" className="mt-10 w-full p-4 border-2 border-black focus:outline-0 rounded-lg shadow-xl text-black font-bold placeholder:text-black placeholder:font-bold" placeholder='Write your description...!' cols="30" rows="10"></textarea>
+            <textarea name="description" id="description" className="mt-10 w-full p-4 border-2 border-black focus:outline-0 rounded-lg shadow-xl text-black font-bold placeholder:text-black placeholder:font-bold" placeholder='Write your description...!' cols="30" rows="10" onChange={handleChange} value={chartList.description}></textarea>
         </div>
     </div>
   )
