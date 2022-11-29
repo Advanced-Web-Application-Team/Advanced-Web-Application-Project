@@ -19,7 +19,7 @@ function SingleLayoutDisplayInProfile({layout}) {
 
   return (
     <div className='w-full flex justify-between'>
-     <Link to={`/publiclayout/${layout.idForLink}`} className="w-full">
+     <Link to={`/publiclayout/${layout._id}`} className="w-full">
     <div className='w-full bg-amber-300 rounded-lg p-10 my-10 shadow-lg'> 
        
         <div>
