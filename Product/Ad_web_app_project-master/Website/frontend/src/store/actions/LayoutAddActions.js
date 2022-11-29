@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {url} from "../../context/LineChartContext"
 const API_URL = "/layout/";
 
 //Add layout
@@ -16,7 +16,7 @@ export const addLayout = (layoutInputs) => async (dispatch, getState) => {
             }
         };
 
-        let check = await axios.post(API_URL, layoutInputs, config);
+        let check = await axios.post(url+API_URL, layoutInputs, config);
 
         
         dispatch({

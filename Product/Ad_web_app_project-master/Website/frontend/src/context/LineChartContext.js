@@ -12,16 +12,16 @@ const LineChartContext = createContext({
     allDataOfV8: [],
     allDataOfV9: [],
 });
-const url = process.env.REACT_APP_SERVER_URL 
+export const url = process.env.REACT_APP_SERVER_URL 
 
-const API_URL_OF_V2 = "v2/";
-const API_URL_OF_V3 = "v3/";
-const API_URL_OF_V4 = "v4/";
-const API_URL_OF_V5 = "v5/";
-const API_URL_OF_V6 = "v6/";
-const API_URL_OF_V7 = "v7/";
-const API_URL_OF_V8 = "v8/";
-const API_URL_OF_V9 = "v9/";
+const API_URL_OF_V2 = "/v2/";
+const API_URL_OF_V3 = "/v3/";
+const API_URL_OF_V4 = "/v4/";
+const API_URL_OF_V5 = "/v5/";
+const API_URL_OF_V6 = "/v6/";
+const API_URL_OF_V7 = "/v7/";
+const API_URL_OF_V8 = "/v8/";
+const API_URL_OF_V9 = "/v9/";
  
 const lineChartReducer = (state, action) => {
 
