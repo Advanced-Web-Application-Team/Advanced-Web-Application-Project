@@ -86,229 +86,6 @@ const options = {
 
 function LineChartOfV8() {
 
-  let NamesArray= 
-             [
-              "Afghanistan",
-              "Albania",
-              "Algeria",
-              "Andorra",
-              "Angola",
-              "Anguilla",
-              "Antigua Barbuda",
-              "Argentina",
-              "Armenia",
-              "Aruba",
-              "Australia",
-              "Austria",
-              "Azerbaijan",
-              "Bahamas",
-              "Bahrain",
-              "Bangladesh",
-              "Barbados",
-              "Belarus",
-              "Belgium",
-              "Belize",
-              "Benin",
-              "Bermuda",
-              "Bhutan",
-              "Bonaire Saint Eustatius and Saba",
-              "Bosnia and Herzegovina",
-              "Botswana",
-              "Brazil",
-              "British Virgin Islands",
-              "Brunei Darussalam",
-              "Bulgaria",
-              "Burkina Faso",
-              "Burundi",
-              "Cambodia",
-              "Canada",
-              "Cape Verde",
-              "Central African Republic",
-              "Chad",
-              "Chile",
-              "China",
-              "Colombia",
-              "Comoros",
-              "Congo",
-              "Cook Islands",
-              "Costa Rica",
-              "Côte d'Ivoire",
-              "Croatia",
-              "Cuba",
-              "Curaçao",
-              "Cyprus",
-              "Czech Republic",
-              "North Korea",
-              "Democratic Republic of the Congo",
-              "Denmark",
-              "Djibouti",
-              "Dominica",
-              "Dominican Republic",
-              "Ecuador",
-              "Egypt",
-              "El Salvador",
-              "Equatorial Guinea",
-              "Eritrea",
-              "Estonia",
-              "Ethiopia",
-              "Faeroe Islands",
-              "Micronesia",
-              "Fiji",
-              "Finland",
-              "France",
-              "French Guiana",
-              "French Polynesia",
-              "Gabon",
-              "Gambia",
-              "Georgia",
-              "Germany",
-              "Ghana",
-              "Greece",
-              "Greenland",
-              "Grenada",
-              "Guadeloupe",
-              "Guatemala",
-              "Guinea",
-              "Guinea_Bissau",
-              "Guyana",
-              "Haiti",
-              "Honduras",
-              "Hong Kong",
-              "Hungary",
-              "Iceland",
-              "India",
-              "Indonesia",
-              "Iraq",
-              "Ireland",
-              "Iran",
-              "Israel",
-              "Italy",
-              "Jamaica",
-              "Japan",
-              "Jordan",
-              "Kazakhstan",
-              "Kenya",
-              "Kiribati",
-              "Kosovo",
-              "Kuwait",
-              "Kyrgyzstan",
-              "Laos",
-              "Latvia",
-              "Lebanon",
-              "Lesotho",
-              "Liberia",
-              "Libya",
-              "Liechtenstein",
-              "Lithuania",
-              "Luxembourg",
-              "Macao",
-              "North Macedonia",
-              "Madagascar",
-              "Malawi",
-              "Malaysia",
-              "Maldives",
-              "Mali",
-              "Malta",
-              "Marshall Islands",
-              "Martinique",
-              "Mauritania",
-              "Mauritius",
-              "Mayotte",
-              "Mexico",
-              "Mongolia",
-              "Montenegro",
-              "Montserrat",
-              "Morocco",
-              "Mozambique",
-              "Myanmar",
-              "Namibia",
-              "Nauru",
-              "Nepal",
-              "Netherlands",
-              "New Caledonia",
-              "New Zealand",
-              "Nicaragua",
-              "Niger",
-              "Nigeria",
-              "Niue",
-              "Norway",
-              "Occupied Palestinian Territory",
-              "Oman",
-              "Pakistan",
-              "Palau",
-              "Panama",
-              "Papua New Guinea",
-              "Paraguay",
-              "Peru",
-              "Philippines",
-              "Bolivia",
-              "Poland",
-              "Portugal",
-              "Qatar",
-              "Cameroon",
-              "South Korea",
-              "Moldova",
-              "South Sudan",
-              "Sudan",
-              "Réunion",
-              "Romania",
-              "Russian Federation",
-              "Rwanda",
-              "Saint Helena",
-              "Saint Lucia",
-              "Sint Maarten",
-              "Samoa",
-              "Sao Tome and Principe",
-              "Saudi Arabia",
-              "Senegal",
-              "Serbia",
-              "Seychelles",
-              "Sierra Leone",
-              "Singapore",
-              "Slovakia",
-              "Slovenia",
-              "Solomon Islands",
-              "Somalia",
-              "South Africa",
-              "Spain",
-              "Sri Lanka",
-              "Saint Kitts and Nevis",
-              "Saint Pierre and Miquelon",
-              "Saint Vincent and the Grenadines",
-              "Suriname",
-              "Swaziland",
-              "Sweden",
-              "Switzerland",
-              "Syria",
-              "Taiwan",
-              "Tajikistan",
-              "Thailand",
-              "Timor Leste",
-              "Togo",
-              "Tonga",
-              "Trinidad and Tobago",
-              "Tunisia",
-              "Turkey",
-              "Turkmenistan",
-              "Turks and Caicos Islands",
-              "Tuvalu",
-              "Uganda",
-              "Ukraine",
-              "United Arab Emirates",
-              "United Kingdom",
-              "Tanzania",
-              "USA",
-              "Uruguay",
-              "Uzbekistan",
-              "Vanuatu",
-              "Venezuela",
-              "Vietnam",
-              "Wallis and Futuna Islands",
-              "Yemen",
-              "Zambia",
-              "Zimbabwe",
-             ]
-
     let {allDataOfV8, fetchAllDataOfV8} = useContext(LineChartContext); 
     
 
@@ -316,8 +93,9 @@ function LineChartOfV8() {
         fetchAllDataOfV8();
     },[]);
     
-//Filter data for visualization
+//Get years data for visualization
 let years = allDataOfV8.map((data) => data.time);
+
 
 //Loop for the number of countries
 for (let i = 0; i < allDataOfV8.length; i++)
@@ -330,7 +108,8 @@ let dataArray =[];
 
 //Array to loop over random colors
 let colorArray = [];
-
+//Array to loop over names
+let nameArray = [];
 //Function for random colors, (PS.colors can repeat(fix this if possible?))
 let randomColors = () => 
 {
@@ -342,32 +121,41 @@ return "rgb("+r+","+g+","+b+")";
 
 }
 
+// Function to filter duplicate values off arrays
+let Filter = (arr) =>
+{
+ let result = arr.filter((element, i) => arr.indexOf(element) === i)
 
+ return result;
+};
 
 
 //Iteration i loop from 0 to all countries 
 for (let i = 0; i < countriesNumber; i++) 
 {
 
- var datatoArray = allDataOfV8.map((value) => 
+ let datatoArray = allDataOfV8.map((value) => 
   ( 
     {
       x: value.time,
       y: value.countries[i],
     }
   ));
-  //Pushing colors to the colorArray
+  //Get countrynames for visualization
+   let countryNames = allDataOfV8.map((data) => data.countryNames[i]);
+  
+  //Pushing values from the loop to the outside array
   colorArray.push(randomColors());
   dataArray.push(datatoArray)
+  nameArray.push(Filter(countryNames))
 };
-
 
   //Data to the graph
   const data = {
         labels: years,
         datasets: dataArray.map((data,i) => (
             {
-                label: NamesArray[i],
+                label: nameArray[i],
                 data:  dataArray[i],
                 borderColor: colorArray[i],
                 backgroundColor: colorArray[i],
