@@ -1,5 +1,4 @@
 import axios from "axios";
-import {url} from "../../context/LineChartContext"
 const API_URL = process.env.REACT_APP_SERVER_URL + "/layout/";
 
 //Add layout
