@@ -35,7 +35,7 @@ function SingleChartInLayout({item, id, side, addToCharts}) {
         })
         
         addToCharts((prevCharts) => {
-            return prevCharts.map((chart) => chart.chartId === chartList.chartId ? {...chart, ...chartList} : chart);
+            return prevCharts.map((chart) => chart.chartId === chartList.chartId ? {...chart, description: e.target.value} : chart);
         });
     };
 

@@ -62,7 +62,8 @@ function LayoutDesignForUser() {
        description: ""
      }));
      let [listOfCharts, setListOfCharts] = useState(modifiedArrayOfSelectedCharts);
- 
+     
+     console.log(listOfCharts);
      
      //Handle submit
  
