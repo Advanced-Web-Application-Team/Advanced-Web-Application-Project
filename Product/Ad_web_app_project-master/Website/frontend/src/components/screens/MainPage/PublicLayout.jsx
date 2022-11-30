@@ -56,39 +56,79 @@ function PublicLayout() {
   return (
    <div className='bg-slate-400 p-4'>
    <div className='container mx-auto'>
-       {layout.message && (
+       {(layout.message || !layout.name) ? (
            
-           <h1 className='my-20 text-center text-2xl font-bold text-pink-500'> No layout can be found! </h1>
-           
-       )}
+        <h1 className='my-20 text-center text-2xl font-bold text-pink-500 h-screen'> No layout can be found! </h1>)
+        
+        :
 
-       {!layout.message && (
-        <div className=''>
-            <div className='my-10'> 
-                <h1 className='text-black text-3xl text-center font-bold'> Name of Layout: <span className='text-amber-500 underline'> {layout.name} </span> </h1>
+        (!layout.message || layout._id) 
+
+        ?
+
+        ((
+            <div className=''>
+                <div className='my-10'> 
+                {(!layout.message) && (<h1 className='text-black text-3xl text-center font-bold'> Name of Layout: <span className='text-amber-500 underline'> {layout.name} </span> </h1>)}
+                </div>
+    
+                <div className='my-36'>
+                 {layout.layoutType === "oneside" && (
+                     <div>
+                      {selectedCharts.map((chart) => (
+                         <SingleChartInPublicLayout chart={chart} side={"oneside"} />
+                      ))}
+                     </div>
+                   )}
+     
+                 {layout.layoutType === "twoside" && (
+                      <div className='grid grid-cols-2 w-full gap-8'>
+                           {selectedCharts.map((chart) => (
+                         <SingleChartInPublicLayout chart={chart} side={"twoside"} />
+                      ))}
+                     
+                     </div>
+                   )}
+     
+                 </div>
             </div>
+           ))
 
-            <div className='my-36'>
-             {layout.layoutType === "oneside" && (
-                 <div>
-                  {selectedCharts.map((chart) => (
-                     <SingleChartInPublicLayout chart={chart} side={"oneside"} />
-                  ))}
-                 </div>
-               )}
- 
-             {layout.layoutType === "twoside" && (
-                  <div className='grid grid-cols-2 w-full gap-8'>
-                       {selectedCharts.map((chart) => (
-                     <SingleChartInPublicLayout chart={chart} side={"twoside"} />
-                  ))}
-                 
-                 </div>
-               )}
- 
-             </div>
+           :
+           
+           ""
+
+
+        
+       }
+
+      {/* {(!layout.message || layout._id) && (
+            <div className=''>
+        <div className='my-10'> 
+        {(!layout.message) && (<h1 className='text-black text-3xl text-center font-bold'> Name of Layout: <span className='text-amber-500 underline'> {layout.name} </span> </h1>)}
         </div>
-       )}
+
+        <div className='my-36'>
+         {layout.layoutType === "oneside" && (
+                  <div>
+                   {selectedCharts.map((chart) => (
+                      <SingleChartInPublicLayout chart={chart} side={"oneside"} />
+                   ))}
+                  </div>
+                )}
+ 
+              {layout.layoutType === "twoside" && (
+                   <div className='grid grid-cols-2 w-full gap-8'>
+                        {selectedCharts.map((chart) => (
+                      <SingleChartInPublicLayout chart={chart} side={"twoside"} />
+                   ))}
+                 
+                  </div>
+                )}
+ 
+              </div>
+         </div>
+        )} */}
    </div>
    </div>                     
   )
