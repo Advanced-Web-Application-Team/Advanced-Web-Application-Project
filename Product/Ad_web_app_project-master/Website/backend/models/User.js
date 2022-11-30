@@ -23,4 +23,9 @@ const UserSchema = new mongoose.Schema(
     { timestamps: true }
   );
   
+
+UserSchema.pre("remove", async function (next) {
+    await this.model("Layout").deleteMany({userId: this._id});
+});
+
   module.exports = mongoose.model("User", UserSchema);

@@ -28,14 +28,22 @@ module.exports= {
         }
       }),
       
-    deleteUser: async (req, res) => {
-      try {
-        await User.findByIdAndDelete(req.params.id);
-        res.status(200).json("User has been deleted...");
-      } catch (err) {
-        res.status(500).json(err);
+    deleteUser: asyncHandler(async (req, res, next) => {
+
+      let userId = req.user._id;
+
+      if (!userId) {
+        res.status(401)
+        throw new Error("Not authenticated!");
       }
-    },
+     
+      let user = await User.findById(userId);
+
+      await user.remove();
+      
+      res.status(200).json({message: "User has been deleted..."});
+     
+    }),
 
     getUser: asyncHandler(async (req, res) => {
         try {
