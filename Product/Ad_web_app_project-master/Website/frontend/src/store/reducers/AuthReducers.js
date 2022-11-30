@@ -3,6 +3,11 @@ let user = JSON.parse(localStorage.getItem("auth"));
 export const authReducer = (state = {user: localStorage.getItem("auth") ? user : {}, isSuccess: false, isError: false, message: ""}, action) => {
 
     switch (action.type) {
+        case "DELETE_USER":
+            return {
+                ...state,
+                user: {}
+            }
         case "REGISTER_SUCCESSFULLY":
             return {
                 ...state,

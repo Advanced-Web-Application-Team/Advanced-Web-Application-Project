@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { useReducer } from "react";
 import axios from "axios";
-
+export const url = process.env.REACT_APP_SERVER_URL 
 const LineChartContext = createContext({
     allDataOfV2: [],
     allDataOfV3: [],
@@ -12,7 +12,7 @@ const LineChartContext = createContext({
     allDataOfV8: [],
     allDataOfV9: [],
 });
-export const url = process.env.REACT_APP_SERVER_URL 
+
 
 const API_URL_OF_V2 = "/v2/";
 const API_URL_OF_V3 = "/v3/";

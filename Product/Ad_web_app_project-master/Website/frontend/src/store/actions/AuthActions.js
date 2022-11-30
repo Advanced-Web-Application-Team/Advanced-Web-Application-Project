@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import {url} from "../../context/LineChartContext"
 const API_URL = "/api/auth/";
@@ -9,9 +8,10 @@ export const registerFunction = (userInputs) => async (dispatch, getState) => {
 
     try {
 
-        await axios.post(url + API_URL + "register", userInputs);
+        await axios.post( url + API_URL + "register", userInputs);
 
-        dispatch({
+        dispatch(
+        {
             type: "REGISTER_SUCCESSFULLY",
         });
 

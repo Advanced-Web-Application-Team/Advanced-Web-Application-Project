@@ -231,7 +231,7 @@ let eventLabels = allDataOfV4.map((value) => value.event);
 
   return (
     <div>
-        <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
+        <div className="p-10" style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, marginBottom: 10, backgroundColor: "white"}}>
             <Line options={options}  data={data} />
             <h3 className='text-black font-bold text-2xl my-5 text-center'> Description </h3>
             <p style={{textAlign: "left", color: 'black', marginBottom: 5}}> The CO2 records presented here are derived from three ice cores obtained at Law Dome, East Antarctica from 1987 to 1993. 
@@ -243,7 +243,9 @@ let eventLabels = allDataOfV4.map((value) => value.event);
             For greater details on the experimental techniques used on the DE08, DE08-2, and DSS ice cores, please refer to Etheridge et al. (1996).
             </p>
             <span>The atmospheric CO2 reconstructions presented here offer records of atmospheric CO2 mixing ratios from 1006 A.D. to 1978 A.D.</span>
-            <p style={{textAlign: "left", paddingTop: "20px",}}> <span style={{fontWeight: "bold"}}> Link to data source for description:</span> https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat </p>
+            <p> <span style={{fontWeight: "bold"}}> Link to data source for description: </span> </p>
+            <div><a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat" className='underline text-sky-600 font-bold'>Link to Data (Click to get)</a></div>
+        
         </div>
     </div>
   )

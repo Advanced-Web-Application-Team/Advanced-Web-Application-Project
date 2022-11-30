@@ -180,7 +180,7 @@ function LineChartOfV2() {
 
   return (
     <div>
-    <div style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, padding: 10, paddingTop: 30, backgroundColor: "white", alignItems: "center", justifyContent: "center"}}>
+    <div className="p-10" style={{width: '90%', margin: "auto", border: "3px solid black", borderRadius: 4, marginBottom: 10, backgroundColor: "white"}}>
         <Line options={options} data={data} />
 
         <h3 className='text-black font-bold text-2xl my-5 text-center'> Description</h3>
@@ -189,11 +189,11 @@ function LineChartOfV2() {
         Northern Hemisphere temperature reconstruction for the past 2,000 years is shown by combining low-resolution proxies with tree-ring data, using a wavelet transform technique to achieve timescale-dependent processing of the data.
         </p>
 
-        <div style={{textAlign: "left"}}> <div style={{fontWeight: "bold"}}> Link to data source for description: </div> 
-        <div className='description'> https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt </div> 
-        <span className='description'> https://www.metoffice.gov.uk/hadobs/hadcrut5/ </span>
+        <div style={{textAlign: "left"}}> <div style={{fontWeight: "bold"}}> Links to data source: </div>
+        <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" className='underline text-sky-600 font-bold'> Northen Hemisphere</a> 
+        <div><a href="https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/moberg2005/nhtemp-moberg2005.txt" className='underline text-sky-600 font-bold'> 2000 Year Temperature </a> </div>
         <div className='description' style={{fontWeight: "bold"}}> Data measurements:</div>
-        <span className='description'> https://gml.noaa.gov/ccgg/about/co2_measurements.html</span>
+        <a href="https://gml.noaa.gov/ccgg/about/co2_measurements.html" className='underline text-sky-600 font-bold'>Data (Click to get)</a>
         </div>
     </div>
 </div>

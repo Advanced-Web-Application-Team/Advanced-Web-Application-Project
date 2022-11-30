@@ -2,6 +2,36 @@
 const Layout = require("../models/LayoutModel");
 const asyncHandler = require("express-async-handler");
 
+//@desc     Get single layout by layout's id
+//@route    /layout/single/:layoutId
+//@access   Public
+
+exports.getSingleLayout = asyncHandler(async (req, res, next) => {
+
+    let singleLayout = await Layout.findById(req.params.layoutId);
+
+    if (!singleLayout) {
+        res.status(404)
+        throw new Error("Cannot find this layout. This does not exist");
+    }
+
+    res.status(200).json(singleLayout);
+
+});
+
+//@desc    Get all layouts
+//@route   /layout/all
+//@access  Public
+
+exports.getAllLayouts = asyncHandler(async (req, res, next) => {
+    
+    let layouts = await Layout.find();
+
+    res.status(200).json(layouts);
+});
+
+
+
 //@desc     Add layout by one specific user
 //@route    /layout
 //@access   Private

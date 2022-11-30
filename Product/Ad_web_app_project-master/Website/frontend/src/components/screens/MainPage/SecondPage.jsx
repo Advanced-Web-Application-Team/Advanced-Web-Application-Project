@@ -1,6 +1,4 @@
 import React from 'react';
-
-import '@splidejs/react-splide/css';
 import LineChartOfV8 from '../../AllChartDesigns/LineChartOfV8';
 import DoughnutChartOfV9 from '../../AllChartDesigns/DoughnutChartOfV9';
 import EachChart from '../../SingleItem/EachChart';
