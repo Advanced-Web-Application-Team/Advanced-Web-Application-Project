@@ -122,6 +122,7 @@ function LineChartOfV7() {
     useEffect(() => {
         fetchAllDataOfV7();
     },[]);
+    
     let yearLabels = allDataOfV7.map((value) => value.time);
     let eventLabels = allDataOfV7.map((value) => value.Event);
 
