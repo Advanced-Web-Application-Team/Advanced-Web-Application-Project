@@ -216,27 +216,56 @@ function DoughnutChartOfV9() {
   const getColor = (id) => 
   {
     let getSectorName = "";
-    let color = ""
+    let color = []
     switch (id) {
       case 0:
         getSectorName = "Energy";
-        color = "rgb(255,255,0)"
+        for (let i = 0; i < 20; i++)
+        {
+         let r = 255 
+         let g = 240 - 10 *i
+         let b = 0 + 6*i
+         let Color = `rgb(${r}, ${g}, ${b})`
+         color.push(Color)
+        }
         break;
       case 1: 
         getSectorName = "Industry ";
-        color ="rgb(169,169,169)"
+        for (let i = 0; i < 2; i++)
+        {
+         let r = 169
+         let g = 169 - 10 *i
+         let b = 169
+         let Color = `rgb(${r}, ${g}, ${b})`
+         color.push(Color)
+        }
         break;
       case 2:
         getSectorName = "Agriculture, Forestry & Land Use";
-        color = "rgb(0,100,0)"
+        for (let i = 0; i < 10; i++)
+        {
+         let r = 0 + 5*i
+         let g = 100 + 28 *i
+         let b = 0 + 20*i
+         let Color = `rgb(${r}, ${g}, ${b})`
+         color.push(Color)
+        }
         break;
       case 3:
         getSectorName = "Waste"
-        color = "rgb(139,69,19)"
+        for (let i = 0; i < 3; i++)
+        {
+         let r = 139 + 50*i
+         let g = 69 + 50 *i
+         let b = 19 + 50*i
+         let Color = `rgb(${r}, ${g}, ${b})`
+         color.push(Color)
+        }
         break;
       default:
         break;
     }
+    console.log(color)
     return color;
   }
 // Sector data values
