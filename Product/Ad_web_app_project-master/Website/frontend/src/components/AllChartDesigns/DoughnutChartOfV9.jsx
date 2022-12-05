@@ -265,7 +265,6 @@ function DoughnutChartOfV9() {
       default:
         break;
     }
-    console.log(color)
     return color;
   }
 // Sector data values
