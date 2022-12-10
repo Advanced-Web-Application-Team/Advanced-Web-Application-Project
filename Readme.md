@@ -53,17 +53,22 @@ When you’ve done this or if you just want to see or just use the UI you can ju
 
 Go to the Website folder and do NPM Install after which you can run it with the command NPM run dev. 
 
-!!!Remember to add your own .env files to the project for it to connect to your own MongoDB database!!! 
+**!!!Remember to add your own .env files to the project for it to connect to your own MongoDB database!!!**
 
-The project was done with 2 .env files. One in the frontend folder and another in the Website folder. For the Website put the: 
+The project was done with 2 .env files. One in the frontend folder and another in the Website folder.
+
+In the **Website** folder put the: 
 
 PORT=8000 
-NODE_ENV="development" 
-MONGO_URI = your own MongoDB link 
- 
-And for the frontend: 
 
 NODE_ENV="development" 
+
+MONGO_URI = your own MongoDB link 
+ 
+And for the **frontend**: 
+
+NODE_ENV="development" 
+
 REACT_APP_SERVER_URL = "http://localhost:8000" 
  
 Link to the server:  
