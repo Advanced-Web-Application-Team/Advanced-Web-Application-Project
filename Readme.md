@@ -71,5 +71,5 @@ NODE_ENV="development"
 
 REACT_APP_SERVER_URL = "http://localhost:8000" 
  
-Link to the server:  
+**Link to the server** (The website is quite slow with the large datasets. The loading of the server might take a while):  
 https://react-chart-node-mongodb-frontend.onrender.com/ 
